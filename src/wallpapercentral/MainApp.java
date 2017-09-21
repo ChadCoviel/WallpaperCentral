@@ -3,11 +3,14 @@ package wallpapercentral;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import wallpapercentral.model.Wallpaper;
 
 /*Implement these classes later*/
 //fx:controller="wallpapercentral.view.WallpapersOverview"
@@ -17,11 +20,17 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private ObservableList<Wallpaper> wallpaperData = FXCollections.observableArrayList();
+
+    public MainApp() {
+
+        //chooser.showOpenDialog(node.getScene().getWindow());
+    }
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("WallpaperApp");
 
         initRootLayout();
 
@@ -59,6 +68,11 @@ public class MainApp extends Application {
 
             // Set person overview into the center of root layout.
             rootLayout.setCenter(wallpapersOverview);
+
+//            // Give the controller access to the main app.
+//            WallpapersOverviewController controller = loader.getController();
+//            controller.setMainApp(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
