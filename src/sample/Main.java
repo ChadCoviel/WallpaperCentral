@@ -6,6 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+
 public class Main extends Application {
 
     @Override
@@ -14,6 +19,10 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
+
+        Collection collection = Arrays.asList("money","food","water");
+        Iterator iterator = collection.iterator();
+
     }
 
 
