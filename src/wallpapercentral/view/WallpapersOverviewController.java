@@ -1,4 +1,6 @@
-package wallpapercentral;
+package wallpapercentral.view;
+
+import wallpapercentral.MainApp;
 
 public class WallpapersOverviewController {
 

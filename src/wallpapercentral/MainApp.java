@@ -86,6 +86,10 @@ public class MainApp extends Application {
         return primaryStage;
     }
 
+    public void addEventListener() {
+        //Set up a listeners object
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
