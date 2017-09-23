@@ -21,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import wallpapercentral.model.Wallpaper;
+import wallpapercentral.model.WallpaperView;
 
 import javax.imageio.ImageIO;
 
@@ -44,8 +44,9 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private SplitPane splitpane1;//using id tag
-    private ObservableList<Wallpaper> wallpaperData = FXCollections.observableArrayList();
+    private ObservableList<WallpaperView> wallpaperData = FXCollections.observableArrayList();
     private ImageView myImageView;
+    public WallpaperView wp = new WallpaperView();
 
     public MainApp() {
         myImageView = new ImageView();
@@ -67,14 +68,16 @@ public class MainApp extends Application {
 //                openFile(file);
 //            }
 //        }
+        //List<File> files = fileChooser.showOpenMultipleDialog(main);
         File file = fileChooser.showOpenDialog(main);
 
         try {
+            //files.forEach();
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
             myImageView.setImage(image);
         } catch (IOException ex) {
-            //Logger.getLogger(PixelFormat.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(FileChooserSample.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -139,6 +142,7 @@ public class MainApp extends Application {
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+    public ObservableList<WallpaperView> getWallpaperData() { return wallpaperData; }
 
     public void addEventListener() {
         //Set up a listeners object
