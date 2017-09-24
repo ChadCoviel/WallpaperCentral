@@ -4,24 +4,23 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelFormat;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import wallpapercentral.model.WallpaperModel;
 import wallpapercentral.model.WallpaperView;
+import wallpapercentral.view.ListController;
+import wallpapercentral.view.MenuController;
 
 import javax.imageio.ImageIO;
 
@@ -45,11 +44,10 @@ public class MainApp extends Application {
     private BorderPane rootLayout;
     private SplitPane splitpane1;//using id tag
     private ObservableList<WallpaperView> wallpaperData = FXCollections.observableArrayList();
-    private ImageView myImageView;
     public WallpaperView wp = new WallpaperView();
 
     public MainApp() {
-        myImageView = new ImageView();
+        //myImageView = new ImageView();
         Stage main = getPrimaryStage();
         //chooser.showOpenDialog(node.getScene().getWindow());
         FileChooser fileChooser = new FileChooser();
@@ -60,7 +58,8 @@ public class MainApp extends Application {
         //Set extension filter
         FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
         FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+        FileChooser.ExtensionFilter extFilterJPEG = new FileChooser.ExtensionFilter("JPEG files (*.jpeg)", "*.JPEG");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG, extFilterJPEG);
 //        List<File> list =
 //                fileChooser.showOpenMultipleDialog(main);
 //        if (list != null) {
@@ -68,14 +67,18 @@ public class MainApp extends Application {
 //                openFile(file);
 //            }
 //        }
-        //List<File> files = fileChooser.showOpenMultipleDialog(main);
-        File file = fileChooser.showOpenDialog(main);
+        List<File> files = fileChooser.showOpenMultipleDialog(main);
+        //File file = fileChooser.showOpenDialog(main);
 
         try {
             //files.forEach();
-            BufferedImage bufferedImage = ImageIO.read(file);
-            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-            myImageView.setImage(image);
+            for (File file: files) {
+                BufferedImage bufferedImage = ImageIO.read(file);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                WallpaperView wp = new WallpaperView(image);
+                //myImageView.setImage(image);
+                wallpaperData.add(wp);
+            }
         } catch (IOException ex) {
             //Logger.getLogger(FileChooserSample.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -83,56 +86,33 @@ public class MainApp extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("WallpaperApp");
 
-        initRootLayout();
+        BorderPane root = new BorderPane();
 
-        showWallpapersOverview();
-    }
-
-    /**
-     * Initializes the root layout.
-     */
-    public void initRootLayout() {
         try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/wallpapercentral/view/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/Menu.fxml"));
+            root.setTop(menuLoader.load());
+            MenuController menuController = menuLoader.getController();
 
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+            FXMLLoader listLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/ListView.fxml"));
+            root.setCenter(listLoader.load());
+            ListController listController = listLoader.getController();
 
-    /**
-     * Shows the person overview inside the root layout.
-     */
-    public void showWallpapersOverview() {
-        try {
-            // Load person overview.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("/wallpapercentral/view/WallpapersOverview.fxml"));
-            AnchorPane wallpapersOverview = (AnchorPane) loader.load();
-            //wallpapersOverview.setPadding(new Insets(25,25,25,25));
-            wallpapersOverview.getChildren().add(myImageView);
-
-            // Set person overview into the center of root layout.
-            rootLayout.setCenter(wallpapersOverview);
-
-//            // Give the controller access to the main app.
-//            WallpapersOverviewController controller = loader.getController();
-//            controller.setMainApp(this);
+            WallpaperModel model = new WallpaperModel();
+            menuController.initModel(model);
+            listController.initModel(model);
+            model.addWallpaperData(wallpaperData);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Scene scene = new Scene(root, 800, 600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     /**
@@ -152,3 +132,8 @@ public class MainApp extends Application {
         launch(args);
     }
 }
+
+/*
+*** Use the below code as a reference for how short we want to keep our Main class. It should be short and sweet. One
+*** start method and then the public static void main...
+ */
