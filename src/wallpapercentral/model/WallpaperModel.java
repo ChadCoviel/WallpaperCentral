@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.Iterator;
+
 //This is our model classes. It will contain the observable lists and will be able to load ans store data. This is like
 //our server if this were a web application with server side requests/operations.
 public class WallpaperModel extends java.util.Observable {
@@ -24,7 +26,9 @@ public class WallpaperModel extends java.util.Observable {
     }
 
     public void addWallpaperData(ObservableList<WallpaperView> wallpaperData) {
-        wallpaperData.addAll(wallpaperData);
+        System.out.println("in");
+        this.wallpaperData.addAll(wallpaperData);
+        System.out.println(this.wallpaperData);
     }
 
     public ObservableList<WallpaperView> getWallpaperData() {

@@ -1,17 +1,31 @@
+/*
+ * Classname
+ *
+ * Version information
+ *
+ * Date
+ *
+ * Copyright notice
+ */
+
 package wallpapercentral.view;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import wallpapercentral.MainApp;
 import wallpapercentral.model.WallpaperModel;
 import wallpapercentral.model.WallpaperView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -19,7 +33,7 @@ import java.util.Observer;
 public class ListController implements ListChangeListener, Observer {
     //Make sure the are the same name as the id in the scene builder!
     @FXML
-    private ListView<WallpaperView> listView;
+    private ListView<HBox> listView;
 
     //private MainApp mainApp;
     private WallpaperModel model;
@@ -28,8 +42,9 @@ public class ListController implements ListChangeListener, Observer {
 
     //Contructors
     public ListController() {
-        this.model = new WallpaperModel();
+        //this.model = new WallpaperModel();
         this.listView = new ListView<>();
+        //HBox hbox = new HBox();
     }
     //public TableViewController(WallpaperModel model) {this.model = model;}
 
@@ -58,11 +73,27 @@ public class ListController implements ListChangeListener, Observer {
         }
     }
 
-    public void initModel(WallpaperModel model) {this.model = model;}
+    public void initModel(WallpaperModel model) {
+        this.model = model;
+        this.model.getWallpaperData().addListener(this);
+    }
 
 
+    //Don't worry to much about chifting when deleting items. Add a button to readjust the cells and compact all items.
+    //Have the button called CleanUp.
     public void updateList() {
-        listView.setItems(model.getWallpaperData());
+        System.out.println("huh");
+        ObservableList<WallpaperView> temp = model.getWallpaperData();
+        ObservableList<HBox> imageRows = FXCollections.observableArrayList();
+        //listView.setItems(model.getWallpaperData())
+        int n = (temp.size() / 3) + ((temp.size() % 3 == 0) ? 0 : 1);
+        for (int i = 0; i < n; i++) {
+            HBox h = new HBox(temp.get(i * 3),temp.get(i * 3 + 1), temp.get(i * 3 + 2));
+            //h.setPrefSize(800.0,200.0);
+            h.setHgrow(listView, Priority.ALWAYS);
+            imageRows.add(h);
+        }
+        listView.setItems(imageRows);
     }
 
     @Override
@@ -75,4 +106,28 @@ public class ListController implements ListChangeListener, Observer {
     public void update(Observable o, Object arg) {
 
     }
+
+//    static class HBoxImageCell extends HBox {
+//        private ArrayList<ImageView> images;
+//
+//        public HBoxImageCell(ArrayList<ImageView> img) {
+//            super();
+//            this.images = img;
+//        }
+//
+//        @Override
+//        protected void updateItem(String item, boolean empty) {
+//            super.updateItem(item, empty);
+//            setText(null);  // No text in label of super class
+//            if (empty) {
+//                lastItem = null;
+//                setGraphic(null);
+//            } else {
+//                lastItem = item;
+//                label.setText(item!=null ? item : "<null>");
+//                setGraphic(hbox);
+//            }
+//        }
+//    }
 }
+
