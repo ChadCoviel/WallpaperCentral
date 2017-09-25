@@ -44,6 +44,8 @@ public class ListController implements ListChangeListener, Observer {
     public ListController() {
         //this.model = new WallpaperModel();
         this.listView = new ListView<>();
+        listView.setPrefSize(800, 200);
+        listView.setEditable(true);
         //HBox hbox = new HBox();
     }
     //public TableViewController(WallpaperModel model) {this.model = model;}
@@ -89,10 +91,26 @@ public class ListController implements ListChangeListener, Observer {
         int n = (temp.size() / 3) + ((temp.size() % 3 == 0) ? 0 : 1);
         for (int i = 0; i < n; i++) {
             HBox h = new HBox(temp.get(i * 3),temp.get(i * 3 + 1), temp.get(i * 3 + 2));
-            //h.setPrefSize(800.0,200.0);
-            h.setHgrow(listView, Priority.ALWAYS);
+            h.setFillHeight(true);
+            h.setPrefSize(600.0,200.0);
+            //h.setHgrow(listView, Priority.ALWAYS);
             imageRows.add(h);
         }
+//        listView.setCellFactory(listView -> new ListCell<HBox>() {
+//            //private HBox hbox;
+//            @Override
+//            public void updateItem(HBox row, boolean empty) {
+//                super.updateItem(row, empty);
+//                if (empty) {
+//                    setText(null);
+//                    setGraphic(null);
+//                } else {
+//                    //hbox = new HBox(temp.get(0),temp.get(1),temp.get(2));
+//                    //setText(row);
+//                    setGraphic(row);
+//                }
+//            }
+//        });
         listView.setItems(imageRows);
     }
 

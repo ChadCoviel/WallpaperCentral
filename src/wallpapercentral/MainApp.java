@@ -3,6 +3,7 @@ package wallpapercentral;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 
 import javafx.application.Application;
@@ -75,7 +76,10 @@ public class MainApp extends Application {
             for (File file: files) {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-                WallpaperView wp = new WallpaperView(image);
+                WallpaperView wp = new WallpaperView(file.toURI().toURL().toString());
+                wp.setPreserveRatio(false);
+                wp.setFitHeight(200);
+                wp.setFitWidth(200);
                 //myImageView.setImage(image);
                 wallpaperData.add(wp);
             }
@@ -110,7 +114,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 600, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
