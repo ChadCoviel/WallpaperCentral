@@ -92,26 +92,26 @@ public class ListController implements ListChangeListener, Observer {
         for (int i = 0; i < n; i++) {
             HBox h = new HBox(temp.get(i * 3),temp.get(i * 3 + 1), temp.get(i * 3 + 2));
             h.setFillHeight(true);
-            h.setPrefSize(600.0,200.0);
+            h.setPrefSize(400.0,200.0);
             //h.setHgrow(listView, Priority.ALWAYS);
             imageRows.add(h);
         }
-//        listView.setCellFactory(listView -> new ListCell<HBox>() {
-//            //private HBox hbox;
-//            @Override
-//            public void updateItem(HBox row, boolean empty) {
-//                super.updateItem(row, empty);
-//                if (empty) {
-//                    setText(null);
-//                    setGraphic(null);
-//                } else {
-//                    //hbox = new HBox(temp.get(0),temp.get(1),temp.get(2));
-//                    //setText(row);
-//                    setGraphic(row);
-//                }
-//            }
-//        });
         listView.setItems(imageRows);
+        listView.setCellFactory(listView -> new ListCell<HBox>() {
+            //private HBox hbox;
+            @Override
+            public void updateItem(HBox row, boolean empty) {
+                super.updateItem(row, empty);
+                if (empty) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    //hbox = new HBox(temp.get(0),temp.get(1),temp.get(2));
+                    //setText(row);
+                    setGraphic(row);
+                }
+            }
+        });
     }
 
     @Override
@@ -147,5 +147,15 @@ public class ListController implements ListChangeListener, Observer {
 //            }
 //        }
 //    }
+
+    //Runnable when you don't want to create classes for each callback
+//    runCallback(new Runnable()
+//    {
+//        @Override
+//        public void run()
+//        {
+//            // Running callback
+//        }
+//    });
 }
 

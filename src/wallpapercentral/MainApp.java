@@ -11,10 +11,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -101,8 +103,15 @@ public class MainApp extends Application {
             root.setTop(menuLoader.load());
             MenuController menuController = menuLoader.getController();
 
+            SplitPane sp = new SplitPane();
+            AnchorPane ap = new AnchorPane();
+            AnchorPane ap2 = new AnchorPane();
+            sp.setOrientation(Orientation.HORIZONTAL);
             FXMLLoader listLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/ListView.fxml"));
-            root.setCenter(listLoader.load());
+            ap2.getChildren().add(listLoader.load());
+            sp.getItems().add(ap);
+            sp.getItems().add(ap2);
+            root.setCenter(sp);
             ListController listController = listLoader.getController();
 
             WallpaperModel model = new WallpaperModel();
