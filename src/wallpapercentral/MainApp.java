@@ -103,6 +103,7 @@ public class MainApp extends Application {
             root.setTop(menuLoader.load());
             MenuController menuController = menuLoader.getController();
 
+            //Figure out how to make children resize dynamically to fit parent when it resizes!!!
             SplitPane sp = new SplitPane();
             AnchorPane ap = new AnchorPane();
             AnchorPane ap2 = new AnchorPane();
@@ -111,6 +112,7 @@ public class MainApp extends Application {
             ap2.getChildren().add(listLoader.load());
             sp.getItems().add(ap);
             sp.getItems().add(ap2);
+            //sp.setDividerPositions(0.3f, 0.6f);
             root.setCenter(sp);
             ListController listController = listLoader.getController();
 
@@ -123,7 +125,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
 
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

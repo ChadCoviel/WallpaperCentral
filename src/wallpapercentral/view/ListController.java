@@ -92,7 +92,7 @@ public class ListController implements ListChangeListener, Observer {
         for (int i = 0; i < n; i++) {
             HBox h = new HBox(temp.get(i * 3),temp.get(i * 3 + 1), temp.get(i * 3 + 2));
             h.setFillHeight(true);
-            h.setPrefSize(400.0,200.0);
+            h.setPrefSize(600.0,200.0);
             //h.setHgrow(listView, Priority.ALWAYS);
             imageRows.add(h);
         }
