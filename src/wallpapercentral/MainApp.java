@@ -25,6 +25,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import wallpapercentral.model.WallpaperModel;
 import wallpapercentral.model.WallpaperView;
+import wallpapercentral.view.CommandController;
 import wallpapercentral.view.ListController;
 import wallpapercentral.view.MenuController;
 
@@ -103,22 +104,38 @@ public class MainApp extends Application {
             root.setTop(menuLoader.load());
             MenuController menuController = menuLoader.getController();
 
+            FXMLLoader commandLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/Commands.fxml"));
+            //root.setTop(commandLoader.load());
+            CommandController commandController = commandLoader.getController();
+
             //Figure out how to make children resize dynamically to fit parent when it resizes!!!
             SplitPane sp = new SplitPane();
             FlowPane fp = new FlowPane();
+            fp.setPrefWrapLength(600);
             ScrollPane scp = new ScrollPane();
-            scp.setContent(fp);
+//            scp.setContent(fp);
             scp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
             scp.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-            scp.setPrefSize(400,600);
+            scp.setPrefSize(600,600);
+            //scp.setFitToHeight(true);
+            //scp.setFitToWidth(true);
             AnchorPane ap = new AnchorPane();
             AnchorPane ap2 = new AnchorPane();
+            AnchorPane ap3 = new AnchorPane();
+//            ap3.getChildren().add(fp);
+//            ap3.setTopAnchor(fp,0.0);
+//            ap3.setBottomAnchor(fp,0.0);
+//            ap3.setRightAnchor(fp,0.0);
+//            ap3.setLeftAnchor(fp,0.0);
+            scp.setContent(fp);
             sp.setOrientation(Orientation.HORIZONTAL);
 //            FXMLLoader listLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/ListView.fxml"));
 //            ap2.getChildren().add(listLoader.load());
             ap2.getChildren().add(scp);
-            sp.getItems().add(ap);
+            sp.getItems().add(commandLoader.load());
             sp.getItems().add(ap2);
+            //sp.setResizableWithParent(ap2,true);
+            //sp.setResizableWithParent(ap,true);
             //sp.setDividerPositions(0.3f, 0.6f);
             root.setCenter(sp);
             //ListController listController = listLoader.getController();
@@ -159,4 +176,17 @@ public class MainApp extends Application {
 /*
 *** Use the below code as a reference for how short we want to keep our Main class. It should be short and sweet. One
 *** start method and then the public static void main...
- */
+// */
+//
+//    FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Open Resource File");
+//                fileChooser.getExtensionFilters().addAll(
+//                new ExtensionFilter("Text Files", "*.txt"),
+//                new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
+//                new ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
+//                new ExtensionFilter("All Files", "*.*"));
+//                Stage primary = mainApp.getPrimaryStage();
+//                File selectedFile = fileChooser.showOpenDialog(primary);
+//                if (selectedFile != null) {
+//                //primary.display(selectedFile);
+//                }
