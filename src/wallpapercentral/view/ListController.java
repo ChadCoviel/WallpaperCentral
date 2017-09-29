@@ -10,6 +10,8 @@
 
 package wallpapercentral.view;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -20,14 +22,17 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.util.Callback;
 import wallpapercentral.MainApp;
 import wallpapercentral.model.WallpaperModel;
 import wallpapercentral.model.WallpaperView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.function.Function;
 
 //This class will be responsible for setting up all of our event listeners and communicate with out model.
 public class ListController implements ListChangeListener, Observer {
@@ -39,6 +44,7 @@ public class ListController implements ListChangeListener, Observer {
     private WallpaperModel model;
     //private MenuControlller menuControlller;
     private BorderPane root;
+    //private
 
     //Contructors
     public ListController() {
@@ -78,6 +84,8 @@ public class ListController implements ListChangeListener, Observer {
     public void initModel(WallpaperModel model) {
         this.model = model;
         this.model.getWallpaperData().addListener(this);
+        //Function<Integer,Integer> add1 = x -> x + 1;
+        //(["jade","chad"]).forEach(System.out::println);
     }
 
 
@@ -88,14 +96,12 @@ public class ListController implements ListChangeListener, Observer {
         ObservableList<WallpaperView> temp = model.getWallpaperData();
         ObservableList<HBox> imageRows = FXCollections.observableArrayList();
         //listView.setItems(model.getWallpaperData())
-        int n = (temp.size() / 3) + ((temp.size() % 3 == 0) ? 0 : 1);
-        for (int i = 0; i < n; i++) {
-            HBox h = new HBox(temp.get(i * 3),temp.get(i * 3 + 1), temp.get(i * 3 + 2));
-            h.setFillHeight(true);
-            h.setPrefSize(600.0,200.0);
-            //h.setHgrow(listView, Priority.ALWAYS);
-            imageRows.add(h);
-        }
+
+        //Simplify this loop tomorrow. Make it more flexible. HBOX.GETCHILDREN().SIZE() for number of nodes currently inside
+        HBox h = new HBox();
+        setHBoxPreferences(h);
+
+
         listView.setItems(imageRows);
         listView.setCellFactory(listView -> new ListCell<HBox>() {
             //private HBox hbox;
@@ -112,10 +118,54 @@ public class ListController implements ListChangeListener, Observer {
                 }
             }
         });
+
+//        mpcListView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+//            @Override
+//            public ListCell<String> call(ListView<String> param){
+//                return createXCell();
+//            }
+//        });
+    }
+
+    public void setHBoxPreferences(HBox hBox) {
+        hBox.setFillHeight(true);
+        hBox.setPrefSize(600.0, 200.0);
+    }
+
+    //Creates the cells and adds listeners for changes and handlers
+//    public ListCell<String> createWallpaperCell() {
+//        final ListCell<String> cell = new ListCell<String>();
+//        final ListCellHBox hbox = new ListCellHBox();
+//
+////        hbox.setSpacing(120);
+//        hbox.getChildren().addAll(label,button);
+//
+//        cell.itemProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> obs, String oldValue, String newValue) {
+//                if (newValue == null) {
+//                    cell.setText(null);
+//                    cell.setGraphic(null);
+//                } else {
+//                    cell.setText(newValue);
+//                    cell.setGraphic(hbox);
+//                }
+//            }
+//        });
+//
+//        return cell ;
+//
+//    }
+
+    private void addToList(List<WallpaperView> wallpaperViews) {
+
     }
 
     @Override
     public void onChanged(Change c) {
+        if (c.wasAdded() && c.getFrom() != c.getTo())
+            addToList(model.getWallpaperData().subList(c.getFrom(),c.getTo()));
+
         System.out.println("we made it");
         updateList();
     }

@@ -1,5 +1,6 @@
 package wallpapercentral;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +19,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import wallpapercentral.model.WallpaperModel;
@@ -44,10 +47,7 @@ import javax.imageio.ImageIO;
 public class MainApp extends Application {
 
     private Stage primaryStage;
-    private BorderPane rootLayout;
-    private SplitPane splitpane1;//using id tag
     private ObservableList<WallpaperView> wallpaperData = FXCollections.observableArrayList();
-    public WallpaperView wp = new WallpaperView();
 
     public MainApp() {
         //myImageView = new ImageView();
@@ -105,21 +105,29 @@ public class MainApp extends Application {
 
             //Figure out how to make children resize dynamically to fit parent when it resizes!!!
             SplitPane sp = new SplitPane();
+            FlowPane fp = new FlowPane();
+            ScrollPane scp = new ScrollPane();
+            scp.setContent(fp);
+            scp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            scp.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+            scp.setPrefSize(400,600);
             AnchorPane ap = new AnchorPane();
             AnchorPane ap2 = new AnchorPane();
             sp.setOrientation(Orientation.HORIZONTAL);
-            FXMLLoader listLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/ListView.fxml"));
-            ap2.getChildren().add(listLoader.load());
+//            FXMLLoader listLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/ListView.fxml"));
+//            ap2.getChildren().add(listLoader.load());
+            ap2.getChildren().add(scp);
             sp.getItems().add(ap);
             sp.getItems().add(ap2);
             //sp.setDividerPositions(0.3f, 0.6f);
             root.setCenter(sp);
-            ListController listController = listLoader.getController();
+            //ListController listController = listLoader.getController();
 
             WallpaperModel model = new WallpaperModel();
             menuController.initModel(model);
-            listController.initModel(model);
+            //listController.initModel(model);
             model.addWallpaperData(wallpaperData);
+            fp.getChildren().addAll(wallpaperData);
 
         } catch (IOException e) {
             e.printStackTrace();
