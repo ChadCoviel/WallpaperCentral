@@ -22,21 +22,37 @@ public class ContentController implements ListChangeListener{
     private AnchorPane ap;
 
     private WallpaperModel model;
+    private Stage stage;
 
-    public ContentController() {
-        //model = new WallpaperModel();
+    @FXML
+    public void initialize() {
+        setListeners();
+    }
+
+    public void setListeners() {
+        ap.sceneProperty().addListener((observableScene, oldScene, newScene) -> {
+            if (oldScene == null && newScene != null) {
+                newScene.windowProperty().addListener((observableWindow, oldWindow, newWindow) -> {
+                    if (oldWindow == null && newWindow != null) {
+                        stage = (Stage) ap.getScene().getWindow();
+                    }
+                });
+            }
+        });
     }
 
     public void initModel(WallpaperModel model) {
         this.model = model;
         this.model.getWallpaperData().addListener(this);
+        System.out.println(content);
         if (this.model.getWallpaperData().size() != 0)
-            this.model.getWallpaperData().forEach(wallpaper -> wallpaper.setOnMouseClicked(event -> enterEditMode()));
+            this.model.getWallpaperData().forEach(wallpaper -> wallpaper.setOnMouseClicked(event ->
+                    stage.setScene(createEditScene())));
     }
 
-    private void enterEditMode() {
-        Scene editor = new Scene(null);
-        ((Stage)ap.getScene().getWindow()).setScene(editor);
+    private Scene createEditScene() {
+
+        return new Scene(null);
     }
 
     @Override
@@ -48,7 +64,8 @@ public class ContentController implements ListChangeListener{
                 content.getChildren().addAll(model.getWallpaperData().subList(c.getFrom(),c.getTo()));
                 System.out.println(model.getWallpaperData().subList(c.getFrom(),c.getTo()));
                 model.getWallpaperData().subList(c.getFrom(),c.getTo())
-                        .forEach(wallpaper -> wallpaper.setOnMouseClicked(event -> enterEditMode()));
+                        .forEach(wallpaper -> wallpaper.setOnMouseClicked(event ->
+                                stage.setScene(createEditScene())));
             }
     }
 }

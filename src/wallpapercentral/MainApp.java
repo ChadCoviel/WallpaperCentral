@@ -70,7 +70,6 @@ public class MainApp extends Application {
 
             WallpaperModel model = new WallpaperModel();
             menuController.initModel(model);
-            //listController.initModel(model);
             contentController.initModel(model);
             commandController.initModel(model);
             model.addImageFiles(promptUserSelection());
@@ -125,15 +124,4 @@ public class MainApp extends Application {
 *** start method and then the public static void main...
 // */
 //
-//    FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Open Resource File");
-//                fileChooser.getExtensionFilters().addAll(
-//                new ExtensionFilter("Text Files", "*.txt"),
-//                new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
-//                new ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
-//                new ExtensionFilter("All Files", "*.*"));
-//                Stage primary = mainApp.getPrimaryStage();
-//                File selectedFile = fileChooser.showOpenDialog(primary);
-//                if (selectedFile != null) {
-//                //primary.display(selectedFile);
-//                }
+
