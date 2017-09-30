@@ -1,17 +1,14 @@
 package wallpapercentral.model;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class WallpaperView extends ImageView implements PropertyChangeListener{
-
-//    public Wallpaper() {
-//        this();
-//    }
-    //private ImageView imgView;
 
     private boolean isDesktopBackgroundImage;
 
@@ -20,12 +17,6 @@ public class WallpaperView extends ImageView implements PropertyChangeListener{
         super(url);
     }
     public WallpaperView(Image img) {super(img);}
-    //public static crop() {}
-    //public static getImage() {}
-
-    /*
-    ***The model is in charge of adding all listeners to itself. It is not aware of who/what is listening.
-     */
     public void addPropertyChangeListener(PropertyChangeListener listener) {}
 
     @Override
@@ -33,15 +24,14 @@ public class WallpaperView extends ImageView implements PropertyChangeListener{
 
     }
 
-//    public void addPropertyChangeListener(PropertyChangeListener listener) {
-//        propertyChangeSupport.addPropertyChangeListener(listener);
-//    }
-//
-//    public void removePropertyChangeListener(PropertyChangeListener listener) {
-//        propertyChangeSupport.removePropertyChangeListener(listener);
-//    }
-//
-//    protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
-//        propertyChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
-//    }
+    public void cropImage(double x, double y, double w, double h) {
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(getImage(), null);
+        BufferedImage croppedBufferedImage = bufferedImage.getSubimage((int) Math.rint(x), (int) Math.rint(y),
+                (int) Math.rint(w),
+                (int) Math.rint(h));
+        Image croppedImage = SwingFXUtils.toFXImage(croppedBufferedImage, null);
+        setImage(croppedImage);
+
+        //BufferedImage bufferedImage = (BufferedImage) wp.getImage();
+    }
 }

@@ -74,21 +74,7 @@ public class MenuController{
         fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG, extFilterJPEG);
 
         List<File> files = fileChooser.showOpenMultipleDialog(menuBar.getScene().getWindow());
-        try {
-            //files.forEach();
-            for (File file: files) {
-                BufferedImage bufferedImage = ImageIO.read(file);
-                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-                WallpaperView wp = new WallpaperView(file.toURI().toURL().toString());
-                wp.setPreserveRatio(false);
-                wp.setFitHeight(200);
-                wp.setFitWidth(200);
-                //myImageView.setImage(image);
-                model.addWallpaper(wp);
-            }
-        } catch (IOException ex) {
-            //Logger.getLogger(FileChooserSample.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        model.addImageFiles(files);
     }
 
     @FXML
