@@ -10,13 +10,12 @@ public class CommandController {
     private FlowPane commands;
 
     private WallpaperModel model;
+    private MainController main;
 
     public CommandController() {
         model = new WallpaperModel();
     }
 
     public void initModel(WallpaperModel model) {this.model = model;}
-
-    public void crop(ActionEvent actionEvent) {
-    }
+    public void initMediator(MainController main) {this.main = main;}
 }

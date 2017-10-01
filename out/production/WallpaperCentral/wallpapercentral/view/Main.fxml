@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
+<BorderPane fx:id="main" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="wallpapercentral.view.MainController"
             prefHeight="400.0" prefWidth="600.0">
@@ -17,7 +17,7 @@
         <SplitPane dividerPositions="0.2">
             <items>
                 <fx:include fx:id="commands" source="Commands.fxml"/>
-                <fx:include fx:id="content" source="Content.fxml"/>
+                <fx:include fx:id="contents" source="Content.fxml"/>
             </items>
         </SplitPane>
     </center>

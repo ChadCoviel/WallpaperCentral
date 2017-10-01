@@ -5,23 +5,22 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.awt.image.BufferedImage;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
-public class WallpaperView extends ImageView implements PropertyChangeListener{
+public class WallpaperView extends ImageView{
 
     private boolean isDesktopBackgroundImage;
+    private boolean isSelected;
 
-    public WallpaperView() {super();}
     public WallpaperView(String url) {
         super(url);
     }
-    public WallpaperView(Image img) {super(img);}
-    public void addPropertyChangeListener(PropertyChangeListener listener) {}
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public boolean isSelected() {
+        return isSelected;
+    }
 
+    public void setSelected(boolean selected) {
+        this.isSelected = selected;
     }
 
     public void cropImage(double x, double y, double w, double h) {
