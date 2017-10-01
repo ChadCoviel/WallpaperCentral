@@ -14,7 +14,7 @@
                <children>
                   <ToolBar fx:id="toolbar" orientation="VERTICAL">
                      <items>
-                        <Button fx:id="crop" mnemonicParsing="false" text="Crop" onAction="#crop" />
+                        <Button fx:id="crop" mnemonicParsing="false" text="Crop" />
                      </items>
                   </ToolBar>
                </children>

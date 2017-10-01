@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import wallpapercentral.SceneController;
 import wallpapercentral.model.WallpaperModel;
 
 import java.util.HashMap;
@@ -18,11 +19,13 @@ public class MainController {
     @FXML private ContentController contentsController;
     @FXML private CommandController commandsController;
     private WallpaperModel model;
+    private SceneController sceneController;
 
     @FXML
     public void initialize() {
-//        FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/Menu.fxml"));
-        //menuController.initModel();
+        menuController.initMediator(this);
+        commandsController.initMediator(this);
+        contentsController.initMediator(this);
     }
 
     public void initModel(WallpaperModel model) {
@@ -30,5 +33,13 @@ public class MainController {
         menuController.initModel(model);
         commandsController.initModel(model);
         contentsController.initModel(model);
+    }
+
+    public void changeToEditor() {
+        sceneController.activate("editor");
+    }
+
+    public void setSceneController(SceneController sceneController) {
+        this.sceneController = sceneController;
     }
 }

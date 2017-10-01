@@ -27,55 +27,29 @@ public class MainApp extends Application {
         WallpaperModel model = new WallpaperModel();
         Pane root = new Pane();
         Pane editor = new Pane();
+        MainController mainController = new MainController();
+        EditorController editorController = new EditorController();
 
         try {
               FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/Main.fxml"));
               root = mainLoader.load();
-              MainController mainController = mainLoader.getController();
+              mainController = mainLoader.getController();
 
               FXMLLoader editorLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/ImageEditor.fxml"));
               editor = editorLoader.load();
-              EditorController editorController = editorLoader.getController();
+              editorController = editorLoader.getController();
 
               mainController.initModel(model);
               editorController.initModel(model);
               model.addImageFiles(FileChooserUtils.openImagesDialog(primaryStage));
-//            FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/Menu.fxml"));
-//            root.setTop(menuLoader.load());
-//            MenuController menuController = menuLoader.getController();
-//
-//
-//            SplitPane sp = new SplitPane();
-//            sp.setOrientation(Orientation.HORIZONTAL);
-//
-//            FXMLLoader commandLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/Commands.fxml"));
-//            //root.setTop(commandLoader.load());
-//            sp.getItems().add(commandLoader.load());
-//            CommandController commandController = commandLoader.getController();
-//
-//            FXMLLoader contentLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/Content.fxml"));
-//            //root.setTop(commandLoader.load());
-//            sp.getItems().add(contentLoader.load());
-//            ContentController contentController = contentLoader.getController();
-//
-//            sp.setDividerPositions(0.25f, 0.75f);
-//            root.setCenter(sp);
-//            //ListController listController = listLoader.getController();
-//
-//            WallpaperModel model = new WallpaperModel();
-//            menuController.initModel(model);
-//            contentController.initModel(model);
-//            commandController.initModel(model);
-//            model.addImageFiles(FileChooserUtils.openImagesDialog(this.primaryStage));
-            //model.addWallpaperData(wallpaperData);
-            //fp.getChildren().addAll(wallpaperData);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         Scene scene = new Scene(root, 800, 600);
         SceneController sceneController = new SceneController(scene);
+        mainController.setSceneController(sceneController);
+        editorController.setSceneController(sceneController);
         sceneController.addScene("editor",editor);
         primaryStage.setScene(scene);
         //primaryStage.sizeToScene();

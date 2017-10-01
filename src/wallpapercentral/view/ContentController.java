@@ -43,14 +43,9 @@ public class ContentController implements ListChangeListener{
         System.out.println(content);
         if (this.model.getWallpaperData().size() != 0)
             this.model.getWallpaperData().forEach(wallpaper -> {
-                wallpaper.setOnMouseClicked(event -> stage.setScene(createEditScene()));
+                wallpaper.setOnMouseClicked(event -> main.changeToEditor());
                 wallpaper.setSelected(true);
             });
-    }
-
-    private Scene createEditScene() {
-
-        return new Scene(null);
     }
 
     @Override
@@ -63,7 +58,7 @@ public class ContentController implements ListChangeListener{
                 System.out.println(model.getWallpaperData().subList(c.getFrom(),c.getTo()));
                 model.getWallpaperData().subList(c.getFrom(),c.getTo())
                         .forEach(wallpaper -> {
-                            wallpaper.setOnMouseClicked(event -> stage.setScene(createEditScene()));
+                            wallpaper.setOnMouseClicked(event -> main.changeToEditor());
                             wallpaper.setSelected(true);
                         });
             }
