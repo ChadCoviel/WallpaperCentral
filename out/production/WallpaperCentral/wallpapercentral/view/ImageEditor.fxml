@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
+<AnchorPane fx:id="ap" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallpapercentral.view.EditorController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button mnemonicParsing="false" text="Crop" />
-            <ImageView fitHeight="300.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image" fitHeight="400.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" />
          </children></VBox>
    </children>
 </AnchorPane>

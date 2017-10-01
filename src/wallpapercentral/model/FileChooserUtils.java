@@ -20,4 +20,17 @@ public class FileChooserUtils {
         List<File> files = fileChooser.showOpenMultipleDialog(w);
         return files;
     }
+
+    public static List<File> openVideosDialog(Window w) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+
+        FileChooser.ExtensionFilter extFilterMKV = new FileChooser.ExtensionFilter("MKV files (*.mkv)", "*.MKV");
+        FileChooser.ExtensionFilter extFilterMP4 = new FileChooser.ExtensionFilter("MP4 files (*.mp4)", "*.MP4");
+        FileChooser.ExtensionFilter extFilterAVI = new FileChooser.ExtensionFilter("AVI files (*.avi)", "*.AVI");
+        fileChooser.getExtensionFilters().addAll(extFilterMKV, extFilterMP4, extFilterAVI);
+
+        List<File> files = fileChooser.showOpenMultipleDialog(w);
+        return files;
+    }
 }

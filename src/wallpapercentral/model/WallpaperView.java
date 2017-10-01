@@ -5,11 +5,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeSupport;
 
-public class WallpaperView extends ImageView{
+public class WallpaperView extends ImageView implements Listenable{
 
-    private boolean isDesktopBackgroundImage;
     private boolean isSelected;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public WallpaperView(String url) {
         super(url);
@@ -20,6 +21,8 @@ public class WallpaperView extends ImageView{
     }
 
     public void setSelected(boolean selected) {
+        System.out.println("nigga we made it");
+        this.pcs.firePropertyChange("selected",this.isSelected,selected);
         this.isSelected = selected;
     }
 
@@ -32,5 +35,10 @@ public class WallpaperView extends ImageView{
         setImage(croppedImage);
 
         //BufferedImage bufferedImage = (BufferedImage) wp.getImage();
+    }
+
+    @Override
+    public PropertyChangeSupport getPropertyChangeSupport() {
+        return pcs;
     }
 }
