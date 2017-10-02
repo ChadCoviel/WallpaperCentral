@@ -18,6 +18,7 @@ public class MainController {
     @FXML private MenuController menuController;
     @FXML private ContentController contentsController;
     @FXML private CommandController commandsController;
+
     private WallpaperModel model;
     private SceneController sceneController;
 
@@ -38,7 +39,6 @@ public class MainController {
     public void changeToEditor() {
         sceneController.activate("editor");
     }
-
     public void setSceneController(SceneController sceneController) {
         this.sceneController = sceneController;
     }

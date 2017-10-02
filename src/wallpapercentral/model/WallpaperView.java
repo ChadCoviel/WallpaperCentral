@@ -21,7 +21,7 @@ public class WallpaperView extends ImageView implements Listenable{
     }
 
     public void setSelected(boolean selected) {
-        System.out.println("nigga we made it");
+        System.out.println("we made it");
         this.pcs.firePropertyChange("selected",this.isSelected,selected);
         this.isSelected = selected;
     }
