@@ -31,6 +31,7 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
     private double initX, initY;
     private double maxX;
     private double maxY;
+    private GraphicsContext gc;
 
     @FXML
     public void initialize() {
@@ -39,6 +40,7 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
         maxY = canvas.getHeight();
         displayingView = false;
         setListeners();
+        gc = canvas.getGraphicsContext2D();
     }
 
     public void setSceneController(SceneController sceneController) {this.sceneController = sceneController;}
@@ -52,9 +54,8 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
         });
         canvas.setOnMousePressed(event -> {
                 //System.out.println("Clicked, x:" + me.getSceneX() + " y:" + me.getSceneY());
-                //the event will be passed only to the circle which is on front
-                System.out.println("pressed");
-                setInitialCoordinates(event.getSceneX(),event.getSceneY());
+                //the event will be passed only to the circle which is on fron
+                setInitialCoordinates(event.getX(),event.getY());
 //                resetDraw()
                 event.consume();
             }
@@ -63,21 +64,29 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
             @Override
             public void handle(MouseEvent me) {
                 //System.out.println("Dragged, x:" + me.getSceneX() + " y:" + me.getSceneY());
-                System.out.println("in here");
-                GraphicsContext gc = canvas.getGraphicsContext2D();
+                //gc.closePath();
+                System.out.println("canvas height: "+canvas.getHeight()+" canvas width: "+canvas.getWidth());
+                //gc.clearRect(0.0, 0.0, canvas.getWidth(), canvas.getHeight());
+                gc.fillRect(0.0,canvas.getHeight(),canvas.getWidth(),-canvas.getHeight());
+                //gc.beginPath();
                 gc.setFill(Color.GREEN);
                 gc.setStroke(Color.BLUE);
                 gc.setLineWidth(5);
                 gc.setGlobalBlendMode(BlendMode.SCREEN);
                 gc.setGlobalAlpha(0.5);
-                gc.setEffect(new BoxBlur(3 * 2, 3 * 2, 3));
-                gc.fillRect(initX,initY,me.getSceneX(),me.getSceneY());
+                //gc.setEffect(new BoxBlur(3 * 2, 3 * 2, 3));
+                System.out.println("initialX: "+initX+" initialY: "+initY+"\ncurrentX: "+me.getX()+" currentY: "+me.getY());
+                gc.fillRect(initX,initY,me.getX() - initX,me.getY() - initY);
             }
         });
-        canvas.setOnMouseDragReleased(null);
+        canvas.setOnMouseReleased(event -> {
+            System.out.println("released");
+            //gc.closePath();
+        });
     }
 
     private void setInitialCoordinates(double sceneX, double sceneY) {
+        System.out.println(initX+ "      "+initY);
         initX = sceneX;
         initY = sceneY;
     }
