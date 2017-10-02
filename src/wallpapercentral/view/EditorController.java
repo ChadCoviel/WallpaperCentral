@@ -5,11 +5,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import wallpapercentral.SceneController;
 import wallpapercentral.model.WallpaperModel;
 import wallpapercentral.model.WallpaperView;
@@ -28,16 +29,17 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
     private WallpaperModel model;
     private boolean displayingView;
     private double initX, initY;
-    //private final double maxX = canvas.getWidth();
-    //private final double maxY = canvas.getHeight();
+    private double maxX;
+    private double maxY;
 
     @FXML
     public void initialize() {
         //sceneController.addScene("editor",this);
+        maxX = canvas.getWidth();
+        maxY = canvas.getHeight();
         displayingView = false;
         setListeners();
     }
-
 
     public void setSceneController(SceneController sceneController) {this.sceneController = sceneController;}
 
@@ -48,11 +50,12 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
                 displayingView = true;
             }
         });
-        canvas.setOnMouseClicked(event -> System.out.println("Suuuuuuuh"));
         canvas.setOnMousePressed(event -> {
                 //System.out.println("Clicked, x:" + me.getSceneX() + " y:" + me.getSceneY());
                 //the event will be passed only to the circle which is on front
+                System.out.println("pressed");
                 setInitialCoordinates(event.getSceneX(),event.getSceneY());
+//                resetDraw()
                 event.consume();
             }
         );
@@ -60,19 +63,18 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
             @Override
             public void handle(MouseEvent me) {
                 //System.out.println("Dragged, x:" + me.getSceneX() + " y:" + me.getSceneY());
+                System.out.println("in here");
                 GraphicsContext gc = canvas.getGraphicsContext2D();
-//                if (me.getSceneX() < maxX && me.getSceneY() < maxY) {
-//                    Line line = new Line(initX, initY, me.getSceneX(), me.getSceneY());
-//                    line.setFill(null);
-//                    line.setStroke(Color.RED);
-//                    line.setStrokeWidth(2);
-//                    anchorRoot.getChildren().add(line);
-//                }
-//
-//                initX = me.getSceneX() > maxX ? maxX : me.getSceneX();
-//                initY = me.getSceneY() > maxY ? maxY : me.getSceneY();
+                gc.setFill(Color.GREEN);
+                gc.setStroke(Color.BLUE);
+                gc.setLineWidth(5);
+                gc.setGlobalBlendMode(BlendMode.SCREEN);
+                gc.setGlobalAlpha(0.5);
+                gc.setEffect(new BoxBlur(3 * 2, 3 * 2, 3));
+                gc.fillRect(initX,initY,me.getSceneX(),me.getSceneY());
             }
         });
+        canvas.setOnMouseDragReleased(null);
     }
 
     private void setInitialCoordinates(double sceneX, double sceneY) {
@@ -86,32 +88,6 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
         System.out.println(this.model);
         //this.model.getWallpaperData().forEach(wallpaper -> wallpaper.addPropertyChangeListener(this));
     }
-//    EventHandler<MouseEvent> circleOnMousePressedEventHandler =
-//            new EventHandler<MouseEvent>() {
-//
-//                @Override
-//                public void handle(MouseEvent t) {
-//                    orgSceneX = t.getSceneX();
-//                    orgSceneY = t.getSceneY();
-//                    orgTranslateX = ((Circle)(t.getSource())).getTranslateX();
-//                    orgTranslateY = ((Circle)(t.getSource())).getTranslateY();
-//                }
-//            };
-//
-//    EventHandler<MouseEvent> circleOnMouseDraggedEventHandler =
-//            new EventHandler<MouseEvent>() {
-//
-//                @Override
-//                public void handle(MouseEvent t) {
-//                    double offsetX = t.getSceneX() - orgSceneX;
-//                    double offsetY = t.getSceneY() - orgSceneY;
-//                    double newTranslateX = orgTranslateX + offsetX;
-//                    double newTranslateY = orgTranslateY + offsetY;
-//
-//                    ((Circle)(t.getSource())).setTranslateX(newTranslateX);
-//                    ((Circle)(t.getSource())).setTranslateY(newTranslateY);
-//                }
-//            };
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
