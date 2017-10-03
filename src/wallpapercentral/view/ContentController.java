@@ -2,11 +2,13 @@ package wallpapercentral.view;
 
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import wallpapercentral.model.UIImageView;
 import wallpapercentral.model.WallpaperModel;
+
+import java.util.List;
 
 
 public class ContentController implements ListChangeListener{
@@ -24,7 +26,7 @@ public class ContentController implements ListChangeListener{
 
     public void initMediator(MainController main) {this.main = main;}
 
-    public void setListeners() {
+    private void setListeners() {
         ap.sceneProperty().addListener((observableScene, oldScene, newScene) -> {
             if (oldScene == null && newScene != null) {
                 newScene.windowProperty().addListener((observableWindow, oldWindow, newWindow) -> {
@@ -36,34 +38,32 @@ public class ContentController implements ListChangeListener{
         });
     }
 
+    private void setImageListeners(List<UIImageView> images) {
+        images.forEach(image ->
+                image.setOnMouseClicked(event -> {
+                    image.setSelected(true);
+                    main.changeToEditor();
+                })
+        );
+    }
+
     public void initModel(WallpaperModel model) {
         this.model = model;
         System.out.println(this.model);
         this.model.getWallpaperData().addListener(this);
         System.out.println(content);
         if (this.model.getWallpaperData().size() != 0)
-            this.model.getWallpaperData().forEach(wallpaper ->
-                wallpaper.setOnMouseClicked(event -> {
-                    wallpaper.setSelected(true);
-                    main.changeToEditor();
-            }));
+            setImageListeners(this.model.getWallpaperData());
     }
 
     @Override
     public void onChanged(Change c) {
         System.out.println("This far");
-        //c.next();
         while (c.next())
             if (c.wasAdded()) {
                 content.getChildren().addAll(model.getWallpaperData().subList(c.getFrom(),c.getTo()));
                 System.out.println(model.getWallpaperData().subList(c.getFrom(),c.getTo()));
-                model.getWallpaperData().subList(c.getFrom(),c.getTo())
-                        .forEach(wallpaper ->
-                            wallpaper.setOnMouseClicked(event -> {
-                                wallpaper.setSelected(true);
-                                main.changeToEditor();
-                            })
-                        );
+                setImageListeners(model.getWallpaperData().subList(c.getFrom(),c.getTo()));
             }
     }
 }

@@ -13,9 +13,9 @@
       <VBox alignment="BOTTOM_CENTER" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button fx:id="crop" mnemonicParsing="false" text="Crop" />
-             <StackPane>
-                 <ImageView fx:id="image" fitHeight="550.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="false" />
-                 <Canvas fx:id="canvas" height="550.0" width="800.0"></Canvas>
+             <StackPane fx:id="stack" prefHeight="550.0" prefWidth="800.0">
+                 <!--<ImageView fx:id="image" fitHeight="550.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="false" />-->
+                 <!--<Canvas fx:id="canvas" height="550.0" width="800.0"></Canvas>-->
              </StackPane>
              <!--<AnchorPane fx:id="imageContainer" prefHeight="550.0" prefWidth="800.0">-->
                  <!--<ImageView fx:id="image" fitHeight="550.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="false" />-->

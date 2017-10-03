@@ -11,13 +11,13 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import wallpapercentral.model.FileChooserUtils;
 import wallpapercentral.model.WallpaperModel;
-import wallpapercentral.model.WallpaperView;
+import wallpapercentral.model.UIImageView;
 import wallpapercentral.view.*;
 
 public class MainApp extends Application {
 
     private Stage primaryStage;
-    private ObservableList<WallpaperView> wallpaperData = FXCollections.observableArrayList();
+    private ObservableList<UIImageView> wallpaperData = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage primaryStage){
@@ -63,7 +63,7 @@ public class MainApp extends Application {
     public Stage getPrimaryStage() {
         return primaryStage;
     }
-    public ObservableList<WallpaperView> getWallpaperData() { return wallpaperData; }
+    public ObservableList<UIImageView> getWallpaperData() { return wallpaperData; }
 
     public void addEventListener() {
         //Set up a listeners object

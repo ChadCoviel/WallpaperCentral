@@ -17,7 +17,7 @@ import java.util.List;
 
 public class WallpaperModel{
 
-    private ObservableList<WallpaperView> wallpaperData;
+    private ObservableList<UIImageView> wallpaperData;
 
     public WallpaperModel() {
         wallpaperData = FXCollections.observableArrayList();
@@ -30,8 +30,8 @@ public class WallpaperModel{
             for (File file: files) {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-                WallpaperView wp = new WallpaperView(file.toURI().toURL().toString());
-                //WallpaperView wp = new WallpaperView(image);
+                UIImageView wp = new UIImageView(file.toURI().toURL().toString());
+                //UIImageView wp = new UIImageView(image);
                 wp.setPreserveRatio(false);
                 wp.setCache(true);
                 wp.setCacheHint(CacheHint.SPEED);
@@ -45,7 +45,7 @@ public class WallpaperModel{
         }
     }
 
-    public ObservableList<WallpaperView> getWallpaperData() {
+    public ObservableList<UIImageView> getWallpaperData() {
         return wallpaperData;
     }
 }
