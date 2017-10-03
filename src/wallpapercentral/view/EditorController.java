@@ -1,14 +1,13 @@
 package wallpapercentral.view;
 
 import javafx.collections.ListChangeListener;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import wallpapercentral.SceneController;
@@ -22,13 +21,14 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
 
     @FXML private ImageView image;
     @FXML private AnchorPane ap;
-    @FXML private AnchorPane imageContainer;
     @FXML private Canvas canvas;
+    @FXML private Button crop;
 
+    private WallpaperView wallpaper;
     private SceneController sceneController;
     private WallpaperModel model;
-    private boolean displayingView;
     private double initX, initY;
+    private double finalX, finalY;
     private double maxX;
     private double maxY;
     private GraphicsContext gc;
@@ -38,7 +38,6 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
         //sceneController.addScene("editor",this);
         maxX = canvas.getWidth();
         maxY = canvas.getHeight();
-        displayingView = false;
         setListeners();
         gc = canvas.getGraphicsContext2D();
     }
@@ -46,11 +45,14 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
     public void setSceneController(SceneController sceneController) {this.sceneController = sceneController;}
 
     private void setListeners() {
-
         ap.sceneProperty().addListener((observableScene, oldScene, newScene) -> {
             if (oldScene == null && newScene != null) {
-                displayingView = true;
             }
+        });
+        canvas.setOnMouseEntered(event -> {
+            System.out.println("inside");
+            ap.getScene().setCursor(Cursor.CROSSHAIR);
+//            cp.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
         });
         canvas.setOnMousePressed(event -> {
                 //System.out.println("Clicked, x:" + me.getSceneX() + " y:" + me.getSceneY());
@@ -60,35 +62,41 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
                 event.consume();
             }
         );
-        canvas.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
+        canvas.setOnMouseDragged(event -> {
                 //System.out.println("Dragged, x:" + me.getSceneX() + " y:" + me.getSceneY());
                 //gc.closePath();
                 System.out.println("canvas height: "+canvas.getHeight()+" canvas width: "+canvas.getWidth());
                 //gc.clearRect(0.0, 0.0, canvas.getWidth(), canvas.getHeight());
                 gc.fillRect(0.0,canvas.getHeight(),canvas.getWidth(),-canvas.getHeight());
-                //gc.beginPath();
-                gc.setFill(Color.GREEN);
+                gc.setFill(Color.BLUE);
                 gc.setStroke(Color.BLUE);
                 gc.setLineWidth(5);
                 gc.setGlobalBlendMode(BlendMode.SCREEN);
-                gc.setGlobalAlpha(0.5);
-                //gc.setEffect(new BoxBlur(3 * 2, 3 * 2, 3));
-                System.out.println("initialX: "+initX+" initialY: "+initY+"\ncurrentX: "+me.getX()+" currentY: "+me.getY());
-                gc.fillRect(initX,initY,me.getX() - initX,me.getY() - initY);
-            }
+                gc.setGlobalAlpha(0.33);
+                System.out.println("initialX: "+initX+" initialY: "+initY+"\ncurrentX: "+event.getX()+" currentY: "+event.getY());
+//                gc.fillRect(initX,initY,event.getX() - initX,event.getY() - initY);
+                if ((event.getX() >= 0) && (event.getX() <= canvas.getWidth()) && (event.getY() >= 0)
+                    && (event.getY() <= canvas.getHeight())) {
+                        GraphicsContextUtils.fillRectWithAnchor(gc,initX,initY,event.getX(),event.getY());
+                        setCurrentCoordinates(event.getX(),event.getY());
+                }
         });
         canvas.setOnMouseReleased(event -> {
             System.out.println("released");
-            //gc.closePath();
         });
+        canvas.setOnMouseExited(event -> ap.getScene().setCursor(Cursor.DEFAULT));
+        crop.setOnAction(event -> cropImage());
     }
 
-    private void setInitialCoordinates(double sceneX, double sceneY) {
+    private void setCurrentCoordinates(double x, double y) {
+        finalX = x;
+        finalY = y;
+    }
+
+    private void setInitialCoordinates(double x, double y) {
         System.out.println(initX+ "      "+initY);
-        initX = sceneX;
-        initY = sceneY;
+        initX = x;
+        initY = y;
     }
 
     public void initModel(WallpaperModel model) {
@@ -96,6 +104,10 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
         this.model.getWallpaperData().addListener(this);
         System.out.println(this.model);
         //this.model.getWallpaperData().forEach(wallpaper -> wallpaper.addPropertyChangeListener(this));
+    }
+
+    public void cropImage() {
+        
     }
 
     @Override

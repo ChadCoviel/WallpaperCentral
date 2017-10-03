@@ -6,7 +6,9 @@ import javafx.stage.Window;
 import java.io.File;
 import java.util.List;
 
-public class FileChooserUtils {
+public final class FileChooserUtils {
+
+    private FileChooserUtils() throws Exception{}
 
     public static List<File> openImagesDialog(Window w) {
         FileChooser fileChooser = new FileChooser();

@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class WallpaperModel extends java.util.Observable {
+public class WallpaperModel{
 
     private ObservableList<WallpaperView> wallpaperData;
 
