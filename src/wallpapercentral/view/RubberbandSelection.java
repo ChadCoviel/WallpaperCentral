@@ -2,6 +2,7 @@ package wallpapercentral.view;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BlendMode;
@@ -29,51 +30,79 @@ public class RubberbandSelection {
     public void on() {
         canvas.setOnMousePressed(processPress);
         canvas.setOnMouseDragged(processDrag);
-        canvas.setOnMouseReleased(processRelease);
+        canvas.setOnMouseEntered(entered);
+        canvas.setOnMouseExited(exited);
+//        canvas.setOnMouseReleased(processRelease);
     }
 
     public void off() {
         canvas.removeEventHandler(MouseEvent.MOUSE_PRESSED,processPress);
         canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED,processDrag);
-        canvas.removeEventHandler(MouseEvent.MOUSE_RELEASED,processRelease);
+        canvas.removeEventHandler(MouseEvent.MOUSE_ENTERED,entered);
+        canvas.removeEventHandler(MouseEvent.MOUSE_EXITED,exited);
+//        canvas.removeEventHandler(MouseEvent.MOUSE_RELEASED,processRelease);
+        reset();
+    }
+
+    public void reset() {
         GraphicsContextUtils.clear(gc);
     }
 
     public Point2D getUpperLeftPoint() {
-        return GraphicsContextUtils.getRectUpperLeftPoint(anchor,currentPoint);
+        if (selectionCreated())
+            return GraphicsContextUtils.getRectUpperLeftPoint(anchor,currentPoint);
+        return null;
     }
 
     public double getSelectionWidth() {
+        if (selectionCreated())
+            return Math.abs(anchor.getX() - currentPoint.getX());
         return 0;
     }
 
     public double getSelectionHeight() {
-        if (anchor != null)
-            return 0.0;
+        if (selectionCreated())
+            return Math.abs(anchor.getY() - currentPoint.getY());
         return 0;
     }
 
-    EventHandler<MouseEvent> processPress = new EventHandler<MouseEvent>() {
+    public boolean selectionCreated() {
+        return anchor != null && currentPoint != null;
+    }
+
+    private EventHandler<MouseEvent> processPress = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            GraphicsContextUtils.clear(gc);
+            System.out.println("Clicked, x:" + event.getSceneX() + " y:" + event.getSceneY());
+            reset();
             anchor = new Point2D(event.getX(),event.getY());
         }
     };
 
-    EventHandler<MouseEvent> processDrag = new EventHandler<MouseEvent>() {
+    private EventHandler<MouseEvent> processDrag = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            GraphicsContextUtils.clear(gc);
-            if (canvas.getBoundsInLocal().contains(event.getX(),event.getY()))
+            System.out.println("initialX: "+anchor.getX()+" initialY: "+anchor.getY()+"\ncurrentX: "+event.getX()+
+                    " currentY: "+event.getY());
+            reset();
+            if (canvas.getBoundsInLocal().contains(event.getX(),event.getY())) {
+                GraphicsContextUtils.fillRectWithAnchor(gc,anchor.getX(),anchor.getY(),event.getX(),event.getY());
                 currentPoint = new Point2D(event.getX(),event.getY());
+            }
         }
     };
 
-    EventHandler<MouseEvent> processRelease = new EventHandler<MouseEvent>() {
+    private EventHandler<MouseEvent> entered = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
+            canvas.getScene().setCursor(Cursor.CROSSHAIR);
+        }
+    };
 
+    private EventHandler<MouseEvent> exited = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            canvas.getScene().setCursor(Cursor.DEFAULT);
         }
     };
 }

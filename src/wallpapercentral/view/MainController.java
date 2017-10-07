@@ -39,6 +39,7 @@ public class MainController {
     public void changeToEditor() {
         sceneController.activate("editor");
     }
+//    public void diaplayContent() { sceneController.activate("content");}
     public void setSceneController(SceneController sceneController) {
         this.sceneController = sceneController;
     }

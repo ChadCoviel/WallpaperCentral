@@ -20,29 +20,26 @@ import java.beans.PropertyChangeListener;
 public class EditorController implements PropertyChangeListener, ListChangeListener {
 
     //USE THE BOUNDS PROPERTY OF THE RECTANGLE NODE!
-//    @FXML private ImageView image;
-    @FXML private AnchorPane ap;
-//    @FXML private Canvas canvas;
-    @FXML private Button crop;
-    @FXML private StackPane stack;
 
-    private UIImageView wallpaper;
-    private Canvas canvas;
+    @FXML private AnchorPane ap;
+    @FXML private Button crop;
+//    @FXML private StackPane stack;
+    @FXML private Button back;
+
+//    private UIImageView wallpaper;
+    private ModelListListener modelListener;
+    private UIImageStackPane stack;
     private SceneController sceneController;
     private WallpaperModel model;
-    private double initX, initY;
-    private double finalX, finalY;
-    private GraphicsContext gc;
 
     @FXML
     public void initialize() {
-        //sceneController.addScene("editor",this);
-        canvas = new Canvas();
-        canvas.widthProperty().bind(stack.widthProperty());
-        canvas.heightProperty().bind(stack.heightProperty());
-//        stack.getChildren().addAll(wallpaper,canvas);
+        modelListener = new ModelListListener();
+        stack = new UIImageStackPane();
+        stack.setPrefWidth(800.0);
+        stack.setPrefWidth(550.0);
+        ap.getChildren().add(stack);
         setListeners();
-        gc = canvas.getGraphicsContext2D();
     }
 
     public void setSceneController(SceneController sceneController) {this.sceneController = sceneController;}
@@ -52,53 +49,21 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
             if (oldScene == null && newScene != null) {
             }
         });
-        canvas.setOnMouseEntered(event -> {
-            System.out.println("inside");
-            ap.getScene().setCursor(Cursor.CROSSHAIR);
+
+        back.setOnAction(event -> {
+            stack.getRubberband().reset();
+            sceneController.activate("content");
         });
-        canvas.setOnMousePressed(event -> {
-                //System.out.println("Clicked, x:" + me.getSceneX() + " y:" + me.getSceneY());
-                //the event will be passed only to the circle which is on fron
-                setInitialCoordinates(event.getX(),event.getY());
-                event.consume();
-            }
-        );
-        canvas.setOnMouseDragged(event -> {
-                //System.out.println("Dragged, x:" + me.getSceneX() + " y:" + me.getSceneY());
-                //gc.closePath();
-//                System.out.println("canvas height: "+canvas.getHeight()+" canvas width: "+canvas.getWidth());
-                //gc.clearRect(0.0, 0.0, canvas.getWidth(), canvas.getHeight());
-                gc.fillRect(0.0,canvas.getHeight(),canvas.getWidth(),-canvas.getHeight());
-                gc.setFill(Color.BLUE);
-                gc.setStroke(Color.BLUE);
-                gc.setLineWidth(5);
-                gc.setGlobalBlendMode(BlendMode.SCREEN);
-                gc.setGlobalAlpha(0.33);
-//                System.out.println("initialX: "+initX+" initialY: "+initY+"\ncurrentX: "+event.getX()+" currentY: "+event.getY());
-                if(canvas.getBoundsInLocal().contains(event.getX(),event.getY())) {
-                        GraphicsContextUtils.fillRectWithAnchor(gc,initX,initY,event.getX(),event.getY());
-                        setCurrentCoordinates(event.getX(),event.getY());
-                }
-        });
-        canvas.setOnMouseReleased(event -> {
-            System.out.println("released");
-        });
-        canvas.setOnMouseExited(event -> ap.getScene().setCursor(Cursor.DEFAULT));
+
         crop.setOnAction(event -> {
-            System.out.println("initialX: "+initX+" initialY: "+initY+"\nFinalX: "+finalX+" finalY: "+finalY);
-            wallpaper.cropImage(initX,initY,finalX,finalY);
+//            System.out.println("initialX: "+initX+" initialY: "+initY+"\nFinalX: "+finalX+" finalY: "+finalY);
+            RubberbandSelection rubberband = stack.getRubberband();
+            if (rubberband.selectionCreated())
+                System.out.println("We croppin");
+                stack.getImg().cropImage(rubberband.getUpperLeftPoint().getX(),rubberband.getUpperLeftPoint().getX(),
+                        rubberband.getSelectionWidth(),rubberband.getSelectionHeight());
+                rubberband.reset();
         });
-    }
-
-    private void setCurrentCoordinates(double x, double y) {
-        finalX = x;
-        finalY = y;
-    }
-
-    private void setInitialCoordinates(double x, double y) {
-        System.out.println(initX+ "      "+initY);
-        initX = x;
-        initY = y;
     }
 
     public void initModel(WallpaperModel model) {
@@ -112,15 +77,9 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
     public void propertyChange(PropertyChangeEvent evt) {
         System.out.println("Yeah boiiiii "+evt.getNewValue());
         if (((Boolean) evt.getNewValue()) == true) {
-//            System.out.println(image);
-//            image = (UIImageView) evt.getSource();
-//            wallpaper = (UIImageView) evt.getSource();
-            wallpaper = new UIImageView(((UIImageView) evt.getSource()).getImage());
-            wallpaper.fitHeightProperty().bind(stack.heightProperty());
-            wallpaper.fitWidthProperty().bind(stack.widthProperty());
-            stack.getChildren().addAll(wallpaper,canvas);
-//            wallpaper.setImage(((UIImageView) evt.getSource()).getImage());
-//            System.out.println(image +"     susssss");
+//            stack.setImageView(new UIImageView(((UIImageView) evt.getSource()).getImage()));
+            stack.setImage(((UIImageView) evt.getSource()).getImage());
+//            wallpaper = stack.getImg();
         }
     }
 
@@ -132,10 +91,5 @@ public class EditorController implements PropertyChangeListener, ListChangeListe
                 model.getWallpaperData().subList(c.getFrom(),c.getTo())
                         .forEach(wallpaper -> wallpaper.addPropertyChangeListener(this));
 
-    }
-
-    private static final class DragContext {
-        public double anchorx;
-        public double anchory;
     }
 }

@@ -25,14 +25,14 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("WallpaperApp");
 
         WallpaperModel model = new WallpaperModel();
-        Pane root = new Pane();
+        Pane content = new Pane();
         Pane editor = new Pane();
         MainController mainController = new MainController();
         EditorController editorController = new EditorController();
 
         try {
               FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/Main.fxml"));
-              root = mainLoader.load();
+              content = mainLoader.load();
               mainController = mainLoader.getController();
 
               FXMLLoader editorLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/ImageEditor.fxml"));
@@ -46,11 +46,12 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(content, 800, 600);
         SceneController sceneController = new SceneController(scene);
+        sceneController.addScene("editor",editor);
+        sceneController.addScene("content", content);
         mainController.setSceneController(sceneController);
         editorController.setSceneController(sceneController);
-        sceneController.addScene("editor",editor);
         primaryStage.setScene(scene);
         //primaryStage.sizeToScene();
         primaryStage.show();
