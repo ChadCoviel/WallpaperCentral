@@ -26,7 +26,7 @@ public class EditorController{
     public void initialize() {
         stack = new UIImageStackPane();
         stack.setPrefWidth(800.0);
-        stack.setPrefWidth(550.0);
+        stack.setPrefHeight(550.0);
         ap.getChildren().add(stack);
     }
 
