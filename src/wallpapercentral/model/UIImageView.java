@@ -13,17 +13,20 @@ import java.beans.PropertyChangeSupport;
 
 public class UIImageView extends ImageView implements Listenable{
 
-    private BooleanProperty selected = new SimpleBooleanProperty();
+    private BooleanProperty selected = new SimpleBooleanProperty(false);
+    private BooleanProperty cropped = new SimpleBooleanProperty(false);
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
-    public UIImageView() {super();}
+    public UIImageView() {
+        super();
+    }
     public UIImageView(String url) {
         super(url);
-        selected.set(false);
 //        setOnMouseClicked(event -> setSelected(true));
     }
 
     public BooleanProperty selectedProperty() {return selected;}
+    public BooleanProperty croppedProperty() {return cropped;}
     public void setSelected(boolean sel) {
         System.out.println(selected.get());
         this.pcs.firePropertyChange("selected",this.selected.get(),sel);
@@ -51,6 +54,7 @@ public class UIImageView extends ImageView implements Listenable{
         System.out.println("WI width: "+image.getWidth()+" WI height: "+image.getHeight());
 //        Image croppedImage = SwingFXUtils.toFXImage(croppedBufferedImage, null);
         setImage(image);
+        cropped.set(true);
         showDimensions();
         //BufferedImage bufferedImage = (BufferedImage) wp.getImage();
     }

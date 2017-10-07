@@ -1,9 +1,14 @@
 package wallpapercentral.model;
 
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public final class FileChooserUtils {
@@ -34,5 +39,19 @@ public final class FileChooserUtils {
 
         List<File> files = fileChooser.showOpenMultipleDialog(w);
         return files;
+    }
+
+    public static void saveImage(Image image, Window w) {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showSaveDialog(w);
+        if (file == null)
+            return;
+        BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
+        try {
+            ImageIO.write(bImage, "png", file);
+            System.out.println("File saved in: "+file.getAbsolutePath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
