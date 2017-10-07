@@ -1,5 +1,7 @@
 package wallpapercentral.model;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,28 +11,21 @@ import java.beans.PropertyChangeSupport;
 
 public class UIImageView extends ImageView implements Listenable{
 
-    private boolean isSelected;
+    private BooleanProperty selected = new SimpleBooleanProperty();
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public UIImageView() {super();}
-
     public UIImageView(String url) {
         super(url);
-        setOnMouseClicked(event -> setSelected(true));
+        selected.set(false);
+//        setOnMouseClicked(event -> setSelected(true));
     }
 
-    public UIImageView(Image img) {
-        super(img);
-    }
-
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        System.out.println("we made it");
-        this.pcs.firePropertyChange("selected",this.isSelected,selected);
-        this.isSelected = selected;
+    public BooleanProperty selectedProperty() {return selected;}
+    public void setSelected(boolean sel) {
+        System.out.println(selected.get());
+        this.pcs.firePropertyChange("selected",this.selected.get(),sel);
+        this.selected.set(sel);
     }
 
     public void cropImage(double originx, double originy, double x, double y) {

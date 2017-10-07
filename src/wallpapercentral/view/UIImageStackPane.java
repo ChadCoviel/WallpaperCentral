@@ -28,7 +28,8 @@ public class UIImageStackPane extends StackPane{
         rubberband.on();
     }
 
-    public Image getImage() {return img.getImage();}
+    public UIImageView getImgView() {return img;}
+    public Image getImg() {return img.getImage();}
     public void setImage(Image img){this.img.setImage(img);}
     public RubberbandSelection getRubberband() {return rubberband;}
 }
