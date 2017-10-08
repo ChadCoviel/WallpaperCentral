@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WallpaperCentral/wallpapercentral/model/FileChooserUtils.class" afterPath="$PROJECT_DIR$/out/production/WallpaperCentral/wallpapercentral/model/FileChooserUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WallpaperCentral/wallpapercentral/model/WallpaperModel.class" afterPath="$PROJECT_DIR$/out/production/WallpaperCentral/wallpapercentral/model/WallpaperModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WallpaperCentral/wallpapercentral/view/EditorController.class" afterPath="$PROJECT_DIR$/out/production/WallpaperCentral/wallpapercentral/view/EditorController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WallpaperCentral/wallpapercentral/view/UIImageStackPane.class" afterPath="$PROJECT_DIR$/out/production/WallpaperCentral/wallpapercentral/view/UIImageStackPane.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitingore" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WallpaperCentral/wallpapercentral/view/ImageEditor.fxml" afterPath="$PROJECT_DIR$/out/production/WallpaperCentral/wallpapercentral/view/ImageEditor.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wallpapercentral/model/FileChooserUtils.java" afterPath="$PROJECT_DIR$/src/wallpapercentral/model/FileChooserUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wallpapercentral/model/WallpaperModel.java" afterPath="$PROJECT_DIR$/src/wallpapercentral/model/WallpaperModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wallpapercentral/view/EditorController.java" afterPath="$PROJECT_DIR$/src/wallpapercentral/view/EditorController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wallpapercentral/view/ImageEditor.fxml" afterPath="$PROJECT_DIR$/src/wallpapercentral/view/ImageEditor.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wallpapercentral/view/UIImageStackPane.java" afterPath="$PROJECT_DIR$/src/wallpapercentral/view/UIImageStackPane.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -142,11 +133,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitingore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitingore">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" column="46" lean-forward="true" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
+              <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -224,7 +215,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/wallpapercentral/view/WallpapersOverviewController.java" />
         <option value="$PROJECT_DIR$/src/wallpapercentral/model/Model.java" />
         <option value="$PROJECT_DIR$/src/wallpapercentral/view/MenuControlller.java" />
         <option value="$PROJECT_DIR$/src/wallpapercentral/view/RootLayout.fxml" />
@@ -275,6 +265,7 @@
         <option value="$PROJECT_DIR$/src/wallpapercentral/view/EditorController.java" />
         <option value="$PROJECT_DIR$/src/wallpapercentral/view/UIImageStackPane.java" />
         <option value="$PROJECT_DIR$/.gitingore" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -625,7 +616,7 @@
       <workItem from="1506384740045" duration="10850000" />
       <workItem from="1506638801515" duration="1779000" />
       <workItem from="1506645092438" duration="96699000" />
-      <workItem from="1507295600570" duration="42956000" />
+      <workItem from="1507295600570" duration="43070000" />
     </task>
     <servers />
   </component>
@@ -638,7 +629,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196923000" />
+    <option name="totallyTimeSpent" value="197037000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="772" extended-state="0" />
@@ -734,7 +725,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml" />
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml" />
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java" />
@@ -1041,14 +1031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/view/UIImageViewListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/MyTests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -1067,8 +1049,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitingore">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="12" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/view/UIImageViewListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="46" lean-forward="true" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
+          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
           <folding />
         </state>
       </provider>
