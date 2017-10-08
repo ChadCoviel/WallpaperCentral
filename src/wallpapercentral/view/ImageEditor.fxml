@@ -7,18 +7,21 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.HBox?>
-<AnchorPane fx:id="ap" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallpapercentral.view.EditorController">
+<AnchorPane fx:id="ap" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallpapercentral.view.EditorController">
    <children>
-      <VBox alignment="BOTTOM_CENTER" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0"
+      <VBox fx:id="vbox" alignment="BOTTOM_CENTER" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0"
             AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox prefWidth="800.0" prefHeight="50.0" alignment="BOTTOM_CENTER">
+         <AnchorPane fx:id="container" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"
+                     xmlns:fx="http://javafx.com/fxml/1">
+         </AnchorPane>
+         <FlowPane prefWidth="800.0" prefHeight="50.0" alignment="BOTTOM_CENTER" visible="true">
                <Button fx:id="crop" mnemonicParsing="false" text="Crop" />
                <Button fx:id="back" mnemonicParsing="false" text="Back" />
                <Button fx:id="save" mnemonicParsing="false" text="Save" />
                <Button fx:id="caption" mnemonicParsing="false" text="Caption" />
                <Slider />
-            </HBox>
+            </FlowPane>
              <!--<StackPane fx:id="stack" prefHeight="500.0" prefWidth="800.0">-->
                  <!--&lt;!&ndash;<ImageView fx:id="image" fitHeight="550.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="false" />&ndash;&gt;-->
                  <!--&lt;!&ndash;<Canvas fx:id="canvas" height="550.0" width="800.0"></Canvas>&ndash;&gt;-->
@@ -26,6 +29,6 @@
              <!--<AnchorPane fx:id="imageContainer" prefHeight="550.0" prefWidth="800.0">-->
                  <!--<ImageView fx:id="image" fitHeight="550.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="false" />-->
              <!--</AnchorPane>-->
-         </children></VBox>
+      </VBox>
    </children>
 </AnchorPane>

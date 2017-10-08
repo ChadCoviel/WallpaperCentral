@@ -23,6 +23,7 @@ public class UIImageStackPane extends StackPane{
         canvas.heightProperty().bind(heightProperty());
         img.fitWidthProperty().bind(widthProperty());
         img.fitHeightProperty().bind(heightProperty());
+        img.setPickOnBounds(true);
 
         this.getChildren().addAll(img,canvas);
         rubberband.on();

@@ -48,6 +48,7 @@ public final class FileChooserUtils {
             return;
         BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
         try {
+            file.renameTo(new File(file.toURI().toURL().toString() + ".png"));
             ImageIO.write(bImage, "png", file);
             System.out.println("File saved in: "+file.getAbsolutePath());
         } catch (IOException e) {

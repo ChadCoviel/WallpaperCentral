@@ -6,22 +6,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import wallpapercentral.SceneController;
 import wallpapercentral.model.FileChooserUtils;
 import wallpapercentral.model.WallpaperModel;
 import wallpapercentral.model.UIImageView;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
 public class EditorController{
 
     //USE THE BOUNDS PROPERTY OF THE RECTANGLE NODE!
 
     @FXML private AnchorPane ap;
+    @FXML private AnchorPane container;
+    @FXML private VBox vbox;
     @FXML private Button crop;
     @FXML private Button back;
     @FXML private Button save;
@@ -37,9 +35,11 @@ public class EditorController{
     @FXML
     public void initialize() {
         stack = new UIImageStackPane();
-        stack.setPrefWidth(800.0);
-        stack.setPrefHeight(500.0);
-        ap.getChildren().add(stack);
+        stack.prefWidthProperty().bind(container.prefWidthProperty());
+        stack.prefHeightProperty().bind(container.prefHeightProperty());
+        stack.setMaxWidth(stack.USE_PREF_SIZE);
+        stack.setMaxHeight(stack.USE_PREF_SIZE);
+        container.getChildren().add(stack);
     }
 
     public void setSceneController(SceneController sceneController) {this.sceneController = sceneController;}
@@ -58,6 +58,8 @@ public class EditorController{
                                     stack.getImgView().croppedProperty().set(false);
                                     currentImgView = (UIImageView) evt.getSource();
                                     stack.setImage(currentImgView.getImage());
+                                    System.out.println("ImgView height: "+stack.getImgView().getFitHeight()+
+                                                        "ImgView width: "+stack.getImgView().getFitWidth());
                                 }
                             }));
                 }
@@ -67,12 +69,6 @@ public class EditorController{
         save.setOnAction(action -> {
             FileChooserUtils.saveImage(stack.getImg(),ap.getScene().getWindow());
         });
-//
-//        stack.getImgView().imageProperty().addListener((observable, oldImage, newImage) -> {
-//            System.out.println("New image height: "+newImage.getHeight()); // always 0.0
-//            BufferedImage bi = SwingFXUtils.fromFXImage(newImage, null);
-//            assert bi!=null; //always null
-//        });
 
         back.setOnAction(event -> {
             stack.getRubberband().reset();

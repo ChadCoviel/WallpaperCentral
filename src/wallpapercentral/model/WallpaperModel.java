@@ -35,6 +35,7 @@ public class WallpaperModel{
                 wp.setPreserveRatio(false);
                 wp.setCache(true);
                 wp.setCacheHint(CacheHint.SPEED);
+                wp.setSmooth(true);
                 wp.setFitHeight(200);
                 wp.setFitWidth(200);
                 //myImageView.setImage(image);
