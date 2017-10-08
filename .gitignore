@@ -1,6 +1,6 @@
-MyTests.*
-ModelListListener.*
-Quadrant.*
-ListView.*
-UIImageViewListener.*
+*/MyTests.*
+*/ModelListListener.*
+*/Quadrant.*
+*/ListView.*
+*/UIImageViewListener.*
 */view/*

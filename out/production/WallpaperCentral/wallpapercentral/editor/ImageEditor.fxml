@@ -8,11 +8,11 @@
 
 <?import javafx.scene.layout.HBox?>
 <AnchorPane fx:id="ap" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallpapercentral.view.EditorController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallpapercentral.editor.EditorController">
    <children>
       <VBox fx:id="vbox" alignment="BOTTOM_CENTER" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0"
             AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <AnchorPane fx:id="container" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"
+         <AnchorPane fx:id="container" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"
                      xmlns:fx="http://javafx.com/fxml/1">
          </AnchorPane>
          <FlowPane prefWidth="800.0" prefHeight="50.0" alignment="BOTTOM_CENTER" visible="true">

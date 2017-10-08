@@ -24,18 +24,16 @@ public class EditorController{
 
 
     private UIImageView currentImgView;
-    private UIImageStackPane stack;
+    private UIImageScrollPane stack;
     private SceneController sceneController;
     private WallpaperModel model;
 //    private boolean cropped = false;
 
     @FXML
     public void initialize() {
-        stack = new UIImageStackPane();
+        stack = new UIImageScrollPane();
         stack.prefWidthProperty().bind(container.prefWidthProperty());
         stack.prefHeightProperty().bind(container.prefHeightProperty());
-        stack.setMaxWidth(stack.USE_PREF_SIZE);
-        stack.setMaxHeight(stack.USE_PREF_SIZE);
         container.getChildren().add(stack);
     }
 
@@ -52,11 +50,22 @@ public class EditorController{
                     c.getList().subList(c.getFrom(),c.getTo()).forEach(image ->
                             ((UIImageView)image).addPropertyChangeListener(evt -> {
                                 if (((Boolean) evt.getNewValue()) == true) {
+                                    container.getChildren().clear();
+                                    stack = new UIImageScrollPane();
+                                    container.getChildren().add(stack);
+                                    stack.prefWidthProperty().bind(container.prefWidthProperty());
+                                    stack.prefHeightProperty().bind(container.prefHeightProperty());
+//                                    stack.setHvalue(0.5);
+//                                    stack.setVvalue(0.5);
                                     stack.getImgView().croppedProperty().set(false);
                                     currentImgView = (UIImageView) evt.getSource();
-                                    stack.setImage(currentImgView.getImage());
-                                    System.out.println("ImgView height: "+stack.getImgView().getFitHeight()+
-                                                        "ImgView width: "+stack.getImgView().getFitWidth());
+                                    stack.getImgView().setImage(currentImgView.getImage());
+                                    stack.resizeCanvas();
+                                    System.out.println("ImgV height: "+stack.getImgView().fitWidthProperty().getValue()+
+                                                        "ImgV width: "+stack.getImgView().fitHeightProperty().getValue());
+                                    System.out.println("Canvas width: "+stack.getCanvas().getWidth()+
+                                            " Canvas height: "+stack.getCanvas().getHeight());
+
                                 }
                             }));
                 }
@@ -74,12 +83,17 @@ public class EditorController{
         });
 
         crop.setOnAction(event -> {
+            System.out.println("ImgView height: "+stack.getImgView().getBoundsInParent().getWidth()+
+                    "ImgView width: "+stack.getImgView().getBoundsInParent().getHeight());
+            System.out.println("Canvas width: "+stack.getCanvas().getWidth()+
+                    " Canvas height: "+stack.getCanvas().getHeight());
 //            System.out.println("initialX: "+initX+" initialY: "+initY+"\nFinalX: "+finalX+" finalY: "+finalY);
             RubberbandSelection rubberband = stack.getRubberband();
             if (rubberband.selectionProperty().get()) {
                 System.out.println("We croppin");
                 stack.getImgView().cropImage(rubberband.getUpperLeftPoint().getX(),rubberband.getUpperLeftPoint().getY(),
                         rubberband.getSelectionWidth(),rubberband.getSelectionHeight());
+                stack.resizeCanvas();
                 rubberband.reset();
             }
         });

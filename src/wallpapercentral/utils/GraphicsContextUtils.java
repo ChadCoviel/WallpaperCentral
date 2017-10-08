@@ -20,6 +20,18 @@ public final class GraphicsContextUtils{
                 gc.fillRect(x,y,originx - x,originy - y);
     }
 
+    public static void strokeRectWithAnchor(GraphicsContext gc, double originx, double originy, double x, double y) {
+//        if (x <)
+        if(x - originx > 0 && originy - y > 0)
+            gc.strokeRect(originx,y,x - originx, originy - y);
+        else if(x - originx > 0 && originy - y < 0)
+            gc.strokeRect(originx,originy,x - originx, y - originy);
+        else if(x - originx < 0 && originy - y < 0)
+            gc.strokeRect(x,originy,originx - x,y - originy);
+        else if(x - originx < 0 && originy - y > 0)
+            gc.strokeRect(x,y,originx - x,originy - y);
+    }
+
     public static Point2D getRectUpperLeftPoint(Point2D anchor, Point2D point) {
         if(point.getX() - anchor.getX() > 0 && anchor.getY() - point.getY() > 0)
             return new Point2D(anchor.getX(),point.getY());

@@ -24,10 +24,10 @@ public class RubberbandSelection {
         selectionProperty = new SimpleBooleanProperty(false);
 
         gc = canvas.getGraphicsContext2D();
-        gc.fillRect(0.0,canvas.getHeight(),canvas.getWidth(),-canvas.getHeight());
-        gc.setFill(Color.BLUE);
-        gc.setStroke(Color.BLUE);
-        gc.setLineWidth(5);
+        clear();
+        gc.setFill(Color.LIGHTBLUE.deriveColor(0, 1.2, 1, 0.6));
+        gc.setStroke(Color.DEEPSKYBLUE);
+        gc.setLineWidth(2);
         gc.setGlobalBlendMode(BlendMode.SCREEN);
         gc.setGlobalAlpha(0.33);
     }
@@ -94,6 +94,7 @@ public class RubberbandSelection {
             clear();
             if (canvas.getBoundsInLocal().contains(event.getX(),event.getY())) {
                 GraphicsContextUtils.fillRectWithAnchor(gc,anchor.getX(),anchor.getY(),event.getX(),event.getY());
+                GraphicsContextUtils.strokeRectWithAnchor(gc,anchor.getX(),anchor.getY(),event.getX(),event.getY());
                 currentPoint = new Point2D(event.getX(),event.getY());
                 selectionProperty.set(true);
             }
