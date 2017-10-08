@@ -8,16 +8,16 @@
 
 <BorderPane fx:id="main" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="wallpapercentral.view.MainController"
+            fx:controller="wallpapercentral.main.MainController"
             prefHeight="400.0" prefWidth="600.0">
     <top>
-        <fx:include fx:id="menu" source="Menu.fxml"/>
+        <fx:include fx:id="menu" source="../menu/Menu.fxml"/>
     </top>
     <center>
         <SplitPane dividerPositions="0.2">
             <items>
-                <fx:include fx:id="commands" source="Commands.fxml"/>
-                <fx:include fx:id="contents" source="Content.fxml"/>
+                <fx:include fx:id="commands" source="../commands/Commands.fxml"/>
+                <fx:include fx:id="contents" source="../content/Content.fxml"/>
             </items>
         </SplitPane>
     </center>

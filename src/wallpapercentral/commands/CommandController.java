@@ -1,9 +1,9 @@
-package wallpapercentral.view;
+package wallpapercentral.commands;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
 import wallpapercentral.model.WallpaperModel;
+import wallpapercentral.main.MainController;
 
 public class CommandController {
     @FXML

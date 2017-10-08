@@ -1,15 +1,14 @@
-package wallpapercentral.view;
+package wallpapercentral.content;
 
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import wallpapercentral.model.UIImageView;
 import wallpapercentral.model.WallpaperModel;
-
-import java.util.List;
+import wallpapercentral.main.MainController;
+import wallpapercentral.view.ModelListListener;
 
 
 public class ContentController{

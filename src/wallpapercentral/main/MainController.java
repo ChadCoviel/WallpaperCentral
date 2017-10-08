@@ -1,14 +1,14 @@
-package wallpapercentral.view;
+package wallpapercentral.main;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import wallpapercentral.SceneController;
+import wallpapercentral.app.SceneController;
+import wallpapercentral.commands.CommandController;
+import wallpapercentral.content.ContentController;
+import wallpapercentral.menu.MenuController;
 import wallpapercentral.model.WallpaperModel;
-
-import java.util.HashMap;
 
 public class MainController {
     @FXML private BorderPane main;

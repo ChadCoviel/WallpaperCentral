@@ -1,15 +1,12 @@
-package wallpapercentral.view;
+package wallpapercentral.editor;
 
 import javafx.collections.ListChangeListener;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
-import wallpapercentral.SceneController;
-import wallpapercentral.model.FileChooserUtils;
+import wallpapercentral.app.SceneController;
+import wallpapercentral.utils.FileChooserUtils;
 import wallpapercentral.model.WallpaperModel;
 import wallpapercentral.model.UIImageView;
 

@@ -1,10 +1,11 @@
-package wallpapercentral.view;
+package wallpapercentral.menu;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuBar;
 import javafx.stage.FileChooser;
 import wallpapercentral.model.WallpaperModel;
+import wallpapercentral.main.MainController;
 
 import java.io.File;
 import java.util.List;

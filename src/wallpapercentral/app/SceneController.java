@@ -1,4 +1,4 @@
-package wallpapercentral;
+package wallpapercentral.app;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;

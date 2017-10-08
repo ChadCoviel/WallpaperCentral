@@ -1,8 +1,7 @@
-package wallpapercentral.view;
+package wallpapercentral.editor;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import wallpapercentral.model.UIImageView;
 

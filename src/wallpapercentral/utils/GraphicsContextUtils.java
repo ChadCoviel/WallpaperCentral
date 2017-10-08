@@ -1,4 +1,4 @@
-package wallpapercentral.view;
+package wallpapercentral.utils;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;

@@ -1,4 +1,4 @@
-package wallpapercentral;
+package wallpapercentral.app;
 
 import java.io.IOException;
 
@@ -9,10 +9,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import wallpapercentral.model.FileChooserUtils;
+import wallpapercentral.editor.EditorController;
+import wallpapercentral.main.MainController;
+import wallpapercentral.utils.FileChooserUtils;
 import wallpapercentral.model.WallpaperModel;
 import wallpapercentral.model.UIImageView;
-import wallpapercentral.view.*;
 
 public class MainApp extends Application {
 
@@ -31,11 +32,11 @@ public class MainApp extends Application {
         EditorController editorController = new EditorController();
 
         try {
-              FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/Main.fxml"));
+              FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/main/Main.fxml"));
               content = mainLoader.load();
               mainController = mainLoader.getController();
 
-              FXMLLoader editorLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/view/ImageEditor.fxml"));
+              FXMLLoader editorLoader = new FXMLLoader(getClass().getResource("/wallpapercentral/editor/ImageEditor.fxml"));
               editor = editorLoader.load();
               editorController = editorLoader.getController();
 

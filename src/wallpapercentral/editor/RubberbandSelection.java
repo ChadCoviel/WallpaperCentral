@@ -1,4 +1,4 @@
-package wallpapercentral.view;
+package wallpapercentral.editor;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import wallpapercentral.utils.GraphicsContextUtils;
 
 public class RubberbandSelection {
     private Point2D anchor;
@@ -53,7 +54,8 @@ public class RubberbandSelection {
         clear();
     }
 
-    public void clear() {GraphicsContextUtils.clear(gc);}
+    public void clear() {
+        GraphicsContextUtils.clear(gc);}
 
     public Point2D getUpperLeftPoint() {
         if (selectionProperty.get())
