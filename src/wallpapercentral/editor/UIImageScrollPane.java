@@ -53,15 +53,15 @@ public class UIImageScrollPane extends ScrollPane{
     }
 
     public void setZoom(boolean zoomable) {
-        this.isZoomable = zoomable;
-        if(isZoomable) {
-            zoom = new ImageZoom(img,this);
-            rubberband.off();
-        }
-        else {
-            zoom.off();
-            resetImage();
-        }
+//        this.isZoomable = zoomable;
+//        if(isZoomable) {
+//            zoom = new ImageZoom(img,this);
+//            rubberband.off();
+//        }
+//        else {
+//            zoom.off();
+//            resetImage();
+//        }
     }
 
     private void resetImage() {

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wallpapercentral/editor/EditorController.java" afterPath="$PROJECT_DIR$/src/wallpapercentral/editor/EditorController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wallpapercentral/editor/ResizeableCanvas.java" afterPath="$PROJECT_DIR$/src/wallpapercentral/editor/ResizeableCanvas.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wallpapercentral/editor/ImageEditor.fxml" afterPath="$PROJECT_DIR$/src/wallpapercentral/editor/ImageEditor.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wallpapercentral/editor/UIImageScrollPane.java" afterPath="$PROJECT_DIR$/src/wallpapercentral/editor/UIImageScrollPane.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -67,14 +67,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UIImageView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wallpapercentral/model/UIImageView.java">
+      <file leaf-file-name="Main.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/wallpapercentral/main/Main.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-297">
-              <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="270">
+              <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Content.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/wallpapercentral/content/Content.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="36" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -82,11 +96,36 @@
       <file leaf-file-name="EditorController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/EditorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="89" column="42" lean-forward="false" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="42" />
+            <state relative-caret-position="411">
+              <caret line="64" column="68" lean-forward="false" selection-start-line="64" selection-start-column="68" selection-end-line="64" selection-end-column="68" />
               <folding>
-                <element signature="e#4723#4724#0" expanded="true" />
-                <element signature="e#4811#4812#0" expanded="true" />
+                <element signature="e#5358#5359#0" expanded="true" />
+                <element signature="e#5446#5447#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/wallpapercentral/main/MainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="43" column="16" lean-forward="false" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
+              <folding>
+                <element signature="e#1458#1459#0" expanded="true" />
+                <element signature="e#1512#1513#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContentController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/wallpapercentral/content/ContentController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="43" column="54" lean-forward="false" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,7 +144,7 @@
       <file leaf-file-name="ImageZoom.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/ImageZoom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-200">
+            <state relative-caret-position="-20">
               <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -114,43 +153,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphicsContextUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wallpapercentral/utils/GraphicsContextUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="29" column="32" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImageUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wallpapercentral/utils/ImageUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIImageScrollPane.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UIImageScrollPane.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/UIImageScrollPane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="62" column="25" lean-forward="true" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIImageStackPane.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/UIImageStackPane.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="283">
+              <caret line="61" column="25" lean-forward="true" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -168,14 +175,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageEditor.fxml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ImageEditor.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/ImageEditor.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="19" column="51" lean-forward="false" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+            <state relative-caret-position="187">
+              <caret line="14" column="40" lean-forward="false" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -272,11 +279,11 @@
         <option value="$PROJECT_DIR$/src/wallpapercentral/utils/GraphicsContextUtils.java" />
         <option value="$PROJECT_DIR$/src/wallpapercentral/editor/RubberbandSelection.java" />
         <option value="$PROJECT_DIR$/src/wallpapercentral/editor/UIImageStackPane.java" />
-        <option value="$PROJECT_DIR$/src/wallpapercentral/editor/ImageEditor.fxml" />
         <option value="$PROJECT_DIR$/src/wallpapercentral/editor/ResizeableCanvas.java" />
         <option value="$PROJECT_DIR$/src/wallpapercentral/editor/ImageZoom.java" />
-        <option value="$PROJECT_DIR$/src/wallpapercentral/editor/UIImageScrollPane.java" />
         <option value="$PROJECT_DIR$/src/wallpapercentral/editor/EditorController.java" />
+        <option value="$PROJECT_DIR$/src/wallpapercentral/editor/ImageEditor.fxml" />
+        <option value="$PROJECT_DIR$/src/wallpapercentral/editor/UIImageScrollPane.java" />
       </list>
     </option>
   </component>
@@ -378,7 +385,21 @@
               <item name="WallpaperCentral" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallpapercentral" type="462c0819:PsiDirectoryNode" />
+              <item name="content" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WallpaperCentral" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WallpaperCentral" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="wallpapercentral" type="462c0819:PsiDirectoryNode" />
               <item name="editor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WallpaperCentral" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WallpaperCentral" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="wallpapercentral" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WallpaperCentral" type="b2602c69:ProjectViewProjectNode" />
@@ -631,7 +652,7 @@
       <workItem from="1506384740045" duration="10850000" />
       <workItem from="1506638801515" duration="1779000" />
       <workItem from="1506645092438" duration="96699000" />
-      <workItem from="1507295600570" duration="73010000" />
+      <workItem from="1507295600570" duration="75487000" />
     </task>
     <servers />
   </component>
@@ -644,7 +665,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226977000" />
+    <option name="totallyTimeSpent" value="229454000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="772" extended-state="0" />
@@ -819,32 +840,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/main/Main.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/wallpapercentral/view/Quadrant.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="36" lean-forward="false" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/content/Content.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="36" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -963,16 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/content/ContentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="43" column="54" lean-forward="false" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/wallpapercentral/model/WallpaperModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -986,17 +975,6 @@
         <state relative-caret-position="150">
           <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/main/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="43" column="16" lean-forward="false" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
-          <folding>
-            <element signature="e#1458#1459#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1044,42 +1022,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/ImageZoom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/EditorController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="89" column="42" lean-forward="false" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="42" />
-          <folding>
-            <element signature="e#4723#4724#0" expanded="true" />
-            <element signature="e#4811#4812#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/ResizeableCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="2" selection-end-line="32" selection-end-column="45" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/UIImageScrollPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="62" column="25" lean-forward="true" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1091,14 +1038,88 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/ImageZoom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-20">
+          <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/main/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="43" column="16" lean-forward="false" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
+          <folding>
+            <element signature="e#1458#1459#0" expanded="true" />
+            <element signature="e#1512#1513#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/content/ContentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="43" column="54" lean-forward="false" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/main/Main.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/content/Content.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="36" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/EditorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="64" column="68" lean-forward="false" selection-start-line="64" selection-start-column="68" selection-end-line="64" selection-end-column="68" />
+          <folding>
+            <element signature="e#5358#5359#0" expanded="true" />
+            <element signature="e#5446#5447#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/ImageEditor.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="19" column="51" lean-forward="false" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+        <state relative-caret-position="187">
+          <caret line="14" column="40" lean-forward="false" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wallpapercentral/editor/UIImageScrollPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="61" column="25" lean-forward="true" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
