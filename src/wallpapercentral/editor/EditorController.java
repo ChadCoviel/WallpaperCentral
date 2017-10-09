@@ -1,8 +1,14 @@
 package wallpapercentral.editor;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import wallpapercentral.app.SceneController;
@@ -24,18 +30,10 @@ public class EditorController{
 
 
     private UIImageView currentImgView;
-    private UIImageScrollPane stack;
+    private UIImageScrollPane scroll;
     private SceneController sceneController;
     private WallpaperModel model;
-//    private boolean cropped = false;
-
-    @FXML
-    public void initialize() {
-        stack = new UIImageScrollPane();
-        stack.prefWidthProperty().bind(container.prefWidthProperty());
-        stack.prefHeightProperty().bind(container.prefHeightProperty());
-        container.getChildren().add(stack);
-    }
+    private final DoubleProperty zoomProperty = new SimpleDoubleProperty(200);
 
     public void setSceneController(SceneController sceneController) {this.sceneController = sceneController;}
 
@@ -49,54 +47,59 @@ public class EditorController{
                     System.out.println(c.getList().subList(c.getFrom(),c.getTo()));
                     c.getList().subList(c.getFrom(),c.getTo()).forEach(image ->
                             ((UIImageView)image).addPropertyChangeListener(evt -> {
+                                //Create the scroll pane and display the clicked image inside of it
                                 if (((Boolean) evt.getNewValue()) == true) {
                                     container.getChildren().clear();
-                                    stack = new UIImageScrollPane();
-                                    container.getChildren().add(stack);
-                                    stack.prefWidthProperty().bind(container.prefWidthProperty());
-                                    stack.prefHeightProperty().bind(container.prefHeightProperty());
-//                                    stack.setHvalue(0.5);
-//                                    stack.setVvalue(0.5);
-                                    stack.getImgView().croppedProperty().set(false);
+                                    scroll = new UIImageScrollPane();
+                                    container.getChildren().add(scroll);
+                                    scroll.prefWidthProperty().bind(container.prefWidthProperty());
+                                    scroll.prefHeightProperty().bind(container.prefHeightProperty());
+                                    scroll.getImgView().croppedProperty().set(false);
                                     currentImgView = (UIImageView) evt.getSource();
-                                    stack.getImgView().setImage(currentImgView.getImage());
-                                    stack.resizeCanvas();
-                                    System.out.println("ImgV height: "+stack.getImgView().fitWidthProperty().getValue()+
-                                                        "ImgV width: "+stack.getImgView().fitHeightProperty().getValue());
-                                    System.out.println("Canvas width: "+stack.getCanvas().getWidth()+
-                                            " Canvas height: "+stack.getCanvas().getHeight());
+                                    scroll.getImgView().setImage(currentImgView.getImage());
+                                    scroll.update();
+                                    scroll.setZoom(true);
+                                    bindSave();
+//                                    setZoom();
+//                                    System.out.println("ImgV height: "+scroll.getImgView().fitWidthProperty().getValue()+
+//                                                        "ImgV width: "+scroll.getImgView().fitHeightProperty().getValue());
+//                                    System.out.println("Canvas width: "+scroll.getCanvas().getWidth()+
+//                                            " Canvas height: "+scroll.getCanvas().getHeight());
 
                                 }
                             }));
                 }
         }));
 
-        save.disableProperty().bind(stack.getImgView().croppedProperty().not());
         save.setOnAction(action -> {
-            FileChooserUtils.saveImage(stack.getImg(),ap.getScene().getWindow());
+            FileChooserUtils.saveImage(scroll.getImg(),ap.getScene().getWindow());
         });
 
         back.setOnAction(event -> {
-            stack.getRubberband().reset();
+            scroll.getRubberband().reset();
             currentImgView.setSelected(false);
             sceneController.activate("content");
         });
 
         crop.setOnAction(event -> {
-            System.out.println("ImgView height: "+stack.getImgView().getBoundsInParent().getWidth()+
-                    "ImgView width: "+stack.getImgView().getBoundsInParent().getHeight());
-            System.out.println("Canvas width: "+stack.getCanvas().getWidth()+
-                    " Canvas height: "+stack.getCanvas().getHeight());
+//            System.out.println("ImgView height: "+scroll.getImgView().getBoundsInParent().getWidth()+
+//                    "ImgView width: "+scroll.getImgView().getBoundsInParent().getHeight());
+//            System.out.println("Canvas width: "+scroll.getCanvas().getWidth()+
+//                    " Canvas height: "+scroll.getCanvas().getHeight());
 //            System.out.println("initialX: "+initX+" initialY: "+initY+"\nFinalX: "+finalX+" finalY: "+finalY);
-            RubberbandSelection rubberband = stack.getRubberband();
+            RubberbandSelection rubberband = scroll.getRubberband();
             if (rubberband.selectionProperty().get()) {
                 System.out.println("We croppin");
-                stack.getImgView().cropImage(rubberband.getUpperLeftPoint().getX(),rubberband.getUpperLeftPoint().getY(),
+                scroll.getImgView().cropImage(rubberband.getUpperLeftPoint().getX(),rubberband.getUpperLeftPoint().getY(),
                         rubberband.getSelectionWidth(),rubberband.getSelectionHeight());
-                stack.resizeCanvas();
+                scroll.update();
                 rubberband.reset();
             }
         });
+    }
+
+    private void bindSave() {
+        save.disableProperty().bind(scroll.getImgView().croppedProperty().not());
     }
 
     public void initModel(WallpaperModel model) {
