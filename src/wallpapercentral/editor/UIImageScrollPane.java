@@ -48,20 +48,21 @@ public class UIImageScrollPane extends ScrollPane{
     public void update() {
         canvas.setWidth(img.getImage().getWidth());
         canvas.setHeight(img.getImage().getHeight());
+        img.getBoundsInParent();
 //        canvas.widthProperty().bind(img.fitWidthProperty());
 //        canvas.heightProperty().bind(img.fitHeightProperty());
     }
 
     public void setZoom(boolean zoomable) {
-//        this.isZoomable = zoomable;
-//        if(isZoomable) {
-//            zoom = new ImageZoom(img,this);
-//            rubberband.off();
-//        }
-//        else {
-//            zoom.off();
-//            resetImage();
-//        }
+        this.isZoomable = zoomable;
+        if(isZoomable) {
+            zoom = new ImageZoom(img,this);
+            rubberband.off();
+        }
+        else {
+            zoom.off();
+            resetImage();
+        }
     }
 
     private void resetImage() {

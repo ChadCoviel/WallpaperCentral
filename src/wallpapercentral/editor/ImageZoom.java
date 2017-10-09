@@ -3,6 +3,8 @@ package wallpapercentral.editor;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -60,5 +62,10 @@ public class ImageZoom {
     public void off() {
         zoomProperty.removeListener(invalidationListener);
         scrollPane.removeEventFilter(ScrollEvent.ANY,scrollHandler);
+    }
+
+    public ReadOnlyDoubleProperty zoomProperty() {
+        final ReadOnlyDoubleProperty zoomReadOnly = new SimpleDoubleProperty(zoomProperty.doubleValue()/200.0);
+        return zoomReadOnly;
     }
 }
