@@ -1,7 +1,6 @@
 package wallpapercentral.editor;
 
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -9,26 +8,18 @@ import javafx.scene.layout.StackPane;
 import wallpapercentral.model.UIImageView;
 
 public class UIImageScrollPane extends ScrollPane{
-    private Canvas canvas;
-    private UIImageView img;
-    private RubberbandSelection rubberband;
-    private ImageZoom zoom;
+    private Canvas canvas = new ResizeableCanvas();
+    private UIImageView img = new UIImageView();
+    private RubberbandSelection rubberband = new RubberbandSelection(canvas);
+    private ImageZoom zoom = new ImageZoom(img,this);
     private StackPane stack = new StackPane();
     private boolean isZoomable = false;
 
-//    private
-
     public UIImageScrollPane() {
         super();
-        canvas = new ResizeableCanvas();
-        img = new UIImageView();
-        rubberband = new RubberbandSelection(canvas);
-        zoom = new ImageZoom(img,this);
-        zoom.off();
 
         System.out.println("yuuuuuuuu");
 
-//        img.fitWidthProperty().bind()
         img.setPreserveRatio(true);
         stack.getChildren().addAll(img, canvas);
         stack.minWidthProperty().bind(Bindings.createDoubleBinding(() ->
@@ -38,6 +29,7 @@ public class UIImageScrollPane extends ScrollPane{
 
         setContent(stack);
         rubberband.on();
+        zoom.off();
     }
 
     //Getters
@@ -57,12 +49,8 @@ public class UIImageScrollPane extends ScrollPane{
     public void setZoom(boolean zoomable) {
         this.isZoomable = zoomable;
         if(isZoomable) {
-//            zoom = new ImageZoom(img,this);
             zoom.on();
-            DoubleProperty zoomProp = zoom.zoomProperty();
-            zoomProp.addListener((observable, oldValue, newValue) -> {
-                  update();
-            });
+            zoom.zoomProperty().addListener((observable, oldValue, newValue) -> update());
             rubberband.off();
         }
         else {
