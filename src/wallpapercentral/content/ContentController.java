@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import wallpapercentral.model.UIImageView;
 import wallpapercentral.model.WallpaperModel;
 import wallpapercentral.main.MainController;
-import wallpapercentral.view.ModelListListener;
+//import wallpapercentral.view.ModelListListener;
 
 
 public class ContentController{
@@ -18,7 +18,7 @@ public class ContentController{
     private WallpaperModel model;
     private Stage stage;
     private MainController main;
-    private ModelListListener modelListener;
+//    private ModelListListener modelListener;
 
     public void initMediator(MainController main) {this.main = main;}
 

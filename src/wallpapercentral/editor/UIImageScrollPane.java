@@ -1,6 +1,7 @@
 package wallpapercentral.editor;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -48,7 +49,6 @@ public class UIImageScrollPane extends ScrollPane{
     public void update() {
         canvas.setWidth(img.getImage().getWidth());
         canvas.setHeight(img.getImage().getHeight());
-        img.getBoundsInParent();
 //        canvas.widthProperty().bind(img.fitWidthProperty());
 //        canvas.heightProperty().bind(img.fitHeightProperty());
     }
@@ -57,6 +57,13 @@ public class UIImageScrollPane extends ScrollPane{
         this.isZoomable = zoomable;
         if(isZoomable) {
             zoom = new ImageZoom(img,this);
+            DoubleProperty zoomProp = zoom.zoomProperty();
+            zoomProp.addListener((observable, oldValue, newValue) -> {
+//                canvas.setWidth(img.getImage().getWidth() * (newValue.doubleValue()/200.0));
+//                canvas.setHeight(img.getImage().getHeight() * (newValue.doubleValue()/200.0));
+                  canvas.setWidth(img.getBoundsInLocal().getWidth());
+                  canvas.setHeight(img.getBoundsInLocal().getHeight());
+            });
             rubberband.off();
         }
         else {

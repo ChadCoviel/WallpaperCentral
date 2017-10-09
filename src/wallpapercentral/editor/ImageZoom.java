@@ -64,8 +64,12 @@ public class ImageZoom {
         scrollPane.removeEventFilter(ScrollEvent.ANY,scrollHandler);
     }
 
-    public ReadOnlyDoubleProperty zoomProperty() {
-        final ReadOnlyDoubleProperty zoomReadOnly = new SimpleDoubleProperty(zoomProperty.doubleValue()/200.0);
-        return zoomReadOnly;
+    public DoubleProperty zoomProperty() {
+        return zoomProperty;
     }
+
+    //    public ReadOnlyDoubleProperty zoomProperty() {
+//        final ReadOnlyDoubleProperty zoomReadOnly = new SimpleDoubleProperty(zoomProperty.divide(200));
+//        return zoomReadOnly;
+//    }
 }
