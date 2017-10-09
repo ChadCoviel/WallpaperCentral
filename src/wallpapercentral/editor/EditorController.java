@@ -99,8 +99,14 @@ public class EditorController{
             RubberbandSelection rubberband = scroll.getRubberband();
             if (rubberband.selectionProperty().get()) {
                 System.out.println("We croppin");
-                scroll.getImgView().cropImage(rubberband.getUpperLeftPoint().getX(),rubberband.getUpperLeftPoint().getY(),
-                        rubberband.getSelectionWidth(),rubberband.getSelectionHeight());
+                final double width = scroll.getImgView().getBoundsInLocal().getWidth();
+                final double widthRatio = scroll.getImgView().getImage().getWidth()/width;
+
+                final double height = scroll.getImgView().getBoundsInLocal().getHeight();
+                final double heightRatio = scroll.getImgView().getImage().getHeight()/height;
+                scroll.getImgView().cropImage(rubberband.getUpperLeftPoint().getX() * widthRatio
+                        ,rubberband.getUpperLeftPoint().getY() * heightRatio,
+                        rubberband.getSelectionWidth() * widthRatio,rubberband.getSelectionHeight() * heightRatio);
                 scroll.update();
                 rubberband.reset();
             }

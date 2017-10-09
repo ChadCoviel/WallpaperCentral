@@ -34,7 +34,7 @@ public class UIImageScrollPane extends ScrollPane{
         stack.minHeightProperty().bind(Bindings.createDoubleBinding(() ->
                 getViewportBounds().getHeight(), viewportBoundsProperty()));
 
-        this.setContent(stack);
+        setContent(stack);
         rubberband.on();
     }
 
@@ -61,6 +61,8 @@ public class UIImageScrollPane extends ScrollPane{
             zoomProp.addListener((observable, oldValue, newValue) -> {
 //                canvas.setWidth(img.getImage().getWidth() * (newValue.doubleValue()/200.0));
 //                canvas.setHeight(img.getImage().getHeight() * (newValue.doubleValue()/200.0));
+                  System.out.println("X coordinate local bounds: "+img.getBoundsInLocal().getMinX()+
+                          " Y coordinate local bounds: "+img.getBoundsInLocal().getMinY());
                   canvas.setWidth(img.getBoundsInLocal().getWidth());
                   canvas.setHeight(img.getBoundsInLocal().getHeight());
             });

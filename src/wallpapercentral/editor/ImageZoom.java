@@ -3,21 +3,16 @@ package wallpapercentral.editor;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.ReadOnlyDoubleProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 
 public class ImageZoom {
 
     private final DoubleProperty zoomProperty = new SimpleDoubleProperty(200);
     private ScrollPane scrollPane;
-//    private ImageView imgView;
     private InvalidationListener invalidationListener;
     private EventHandler scrollHandler;
 
@@ -31,7 +26,7 @@ public class ImageZoom {
         setScrollPane(scrollPane);
     }
 
-    public void setScrollPane(ScrollPane scrollPane) {
+    private void setScrollPane(ScrollPane scrollPane) {
         scrollPane.addEventFilter(ScrollEvent.ANY, createEventHandler(scrollPane));
     }
 
@@ -52,7 +47,7 @@ public class ImageZoom {
         return invalidationListener = new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
-                System.out.println("Zoom property: "+zoomProperty);
+//                System.out.println("Zoom property: "+zoomProperty);
                 imgView.setFitWidth(zoomProperty.get() * 4);
                 imgView.setFitHeight(zoomProperty.get() * 3);
             }
