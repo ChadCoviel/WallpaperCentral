@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import wallpapercentral.utils.GraphicsContextUtils;
 
-public class RubberbandSelection {
+public class RubberbandSelection implements Toggleable{
     private Point2D anchor;
     private Point2D currentPoint;
     private GraphicsContext gc;
@@ -32,6 +32,7 @@ public class RubberbandSelection {
         gc.setGlobalAlpha(0.33);
     }
 
+    @Override
     public void on() {
         canvas.setOnMousePressed(processPress);
         canvas.setOnMouseDragged(processDrag);
@@ -39,6 +40,7 @@ public class RubberbandSelection {
         canvas.setOnMouseExited(exited);
     }
 
+    @Override
     public void off() {
         canvas.removeEventHandler(MouseEvent.MOUSE_PRESSED,processPress);
         canvas.removeEventHandler(MouseEvent.MOUSE_DRAGGED,processDrag);

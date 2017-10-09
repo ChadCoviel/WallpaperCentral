@@ -35,28 +35,24 @@ public class UIImageView extends ImageView implements Listenable{
 
     public void cropImage(double originx, double originy, double x, double y) {
 
-//        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(getImage(), null);
-//        BufferedImage croppedBufferedImage;
-//
-//        System.out.println("MinX: "+bufferedImage.getMinX()+" MinY: "+bufferedImage.getMinY()+
-//                "\nwidth: "+bufferedImage.getWidth()+" height: "+bufferedImage.getHeight());
-//        croppedBufferedImage = bufferedImage.getSubimage((int) Math.rint(originx), (int) Math.rint(originy),
-//                    (int) Math.rint(x),
-//                    (int) Math.rint(y));
-//        Image croppedImage = SwingFXUtils.toFXImage(croppedBufferedImage, null);
         System.out.println("originx: "+originx+" originy: "+originy+"\nwidth: "+x+" height: "+y);
         System.out.println("(int) originx: "+(int)Math.rint(originx)+" (int) originy: "+(int)Math.rint(originy)+
                 "\n(int) width: "+(int)Math.rint(x)+" (int) height: "+(int)Math.rint(y));
 
-        WritableImage image = new WritableImage(getImage().getPixelReader(),(int) Math.rint(originx), (int) Math.rint(originy),
-                (int) Math.rint(x),
-                (int) Math.rint(y));
+        final double boundsWidth = getBoundsInLocal().getWidth();
+        final double widthRatio = getImage().getWidth()/boundsWidth;
+
+        final double boundsHeight = getBoundsInLocal().getHeight();
+        final double heightRatio = getImage().getHeight()/boundsHeight;
+
+        WritableImage image = new WritableImage(getImage().getPixelReader(),(int) Math.rint(originx * widthRatio),
+                (int) Math.rint(originy * heightRatio),
+                (int) Math.rint(x * widthRatio),
+                (int) Math.rint(y * heightRatio));
         System.out.println("WI width: "+image.getWidth()+" WI height: "+image.getHeight());
-//        Image croppedImage = SwingFXUtils.toFXImage(croppedBufferedImage, null);
         setImage(image);
         cropped.set(true);
         showDimensions();
-        //BufferedImage bufferedImage = (BufferedImage) wp.getImage();
     }
 
     public void showDimensions() {

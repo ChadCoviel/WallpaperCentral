@@ -39,9 +39,6 @@ public class EditorController{
     public void setSceneController(SceneController sceneController) {this.sceneController = sceneController;}
 
     private void setListeners() {
-
-        //BUTTON DISABLEPROPERTY.BIND!!!
-
         model.getWallpaperData().addListener((ListChangeListener)(c -> {
             while (c.next())
                 if (c.wasAdded()) {
@@ -53,12 +50,6 @@ public class EditorController{
                                     container.getChildren().clear();
                                     scroll = new UIImageScrollPane();
                                     container.getChildren().add(scroll);
-//                                    Parent scrollParent = scroll.getParent();
-//                                    scroll.fitToWidthProperty().bind(scrollParent.wi);
-//                                    scroll.prefWidthProperty().bind(container.prefWidthProperty());
-//                                    scroll.prefHeightProperty().bind(container.prefHeightProperty());
-//                                    scroll.setPrefHeight(550.0);
-//                                    scroll.setPrefWidth(800.0);
                                     AnchorPane.setTopAnchor(scroll,0.0);
                                     AnchorPane.setBottomAnchor(scroll, 0.0);
                                     AnchorPane.setLeftAnchor(scroll, 0.0);
@@ -69,12 +60,6 @@ public class EditorController{
                                     scroll.update();
                                     scroll.setZoom(true);
                                     bindSave();
-//                                    setZoom();
-//                                    System.out.println("ImgV height: "+scroll.getImgView().fitWidthProperty().getValue()+
-//                                                        "ImgV width: "+scroll.getImgView().fitHeightProperty().getValue());
-//                                    System.out.println("Canvas width: "+scroll.getCanvas().getWidth()+
-//                                            " Canvas height: "+scroll.getCanvas().getHeight());
-
                                 }
                             }));
                 }
@@ -99,14 +84,9 @@ public class EditorController{
             RubberbandSelection rubberband = scroll.getRubberband();
             if (rubberband.selectionProperty().get()) {
                 System.out.println("We croppin");
-                final double width = scroll.getImgView().getBoundsInLocal().getWidth();
-                final double widthRatio = scroll.getImgView().getImage().getWidth()/width;
-
-                final double height = scroll.getImgView().getBoundsInLocal().getHeight();
-                final double heightRatio = scroll.getImgView().getImage().getHeight()/height;
-                scroll.getImgView().cropImage(rubberband.getUpperLeftPoint().getX() * widthRatio
-                        ,rubberband.getUpperLeftPoint().getY() * heightRatio,
-                        rubberband.getSelectionWidth() * widthRatio,rubberband.getSelectionHeight() * heightRatio);
+                scroll.getImgView().cropImage(rubberband.getUpperLeftPoint().getX()
+                        ,rubberband.getUpperLeftPoint().getY(),
+                        rubberband.getSelectionWidth(),rubberband.getSelectionHeight());
                 scroll.update();
                 rubberband.reset();
             }

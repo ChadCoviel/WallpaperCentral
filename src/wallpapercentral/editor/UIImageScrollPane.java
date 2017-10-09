@@ -23,6 +23,8 @@ public class UIImageScrollPane extends ScrollPane{
         canvas = new ResizeableCanvas();
         img = new UIImageView();
         rubberband = new RubberbandSelection(canvas);
+        zoom = new ImageZoom(img,this);
+        zoom.off();
 
         System.out.println("yuuuuuuuu");
 
@@ -43,28 +45,23 @@ public class UIImageScrollPane extends ScrollPane{
     public UIImageView getImgView() {return img;}
     public Image getImg() {return img.getImage();}
     public RubberbandSelection getRubberband() {return rubberband;}
+    public ImageZoom getZoom(){return zoom;}
     public boolean isZoomable() {return isZoomable;}
 
     //Must be called whenever the image view has its image changed
     public void update() {
-        canvas.setWidth(img.getImage().getWidth());
-        canvas.setHeight(img.getImage().getHeight());
-//        canvas.widthProperty().bind(img.fitWidthProperty());
-//        canvas.heightProperty().bind(img.fitHeightProperty());
+        canvas.setWidth(img.getBoundsInLocal().getWidth());
+        canvas.setHeight(img.getBoundsInLocal().getHeight());
     }
 
     public void setZoom(boolean zoomable) {
         this.isZoomable = zoomable;
         if(isZoomable) {
-            zoom = new ImageZoom(img,this);
+//            zoom = new ImageZoom(img,this);
+            zoom.on();
             DoubleProperty zoomProp = zoom.zoomProperty();
             zoomProp.addListener((observable, oldValue, newValue) -> {
-//                canvas.setWidth(img.getImage().getWidth() * (newValue.doubleValue()/200.0));
-//                canvas.setHeight(img.getImage().getHeight() * (newValue.doubleValue()/200.0));
-                  System.out.println("X coordinate local bounds: "+img.getBoundsInLocal().getMinX()+
-                          " Y coordinate local bounds: "+img.getBoundsInLocal().getMinY());
-                  canvas.setWidth(img.getBoundsInLocal().getWidth());
-                  canvas.setHeight(img.getBoundsInLocal().getHeight());
+                  update();
             });
             rubberband.off();
         }
