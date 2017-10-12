@@ -17,11 +17,10 @@ public class RubberbandSelection implements Toggleable{
     private Point2D currentPoint;
     private GraphicsContext gc;
     private Canvas canvas;
-    private BooleanProperty selectionProperty;
+    private final BooleanProperty selectionProperty = new SimpleBooleanProperty(false);;
 
     public RubberbandSelection(Canvas c) {
         this.canvas = c;
-        selectionProperty = new SimpleBooleanProperty(false);
 
         gc = canvas.getGraphicsContext2D();
         clear();

@@ -1,6 +1,4 @@
-*/MyTests.*
-*/ModelListListener.*
-*/Quadrant.*
-*/ListView.*
-*/UIImageViewListener.*
-*/view/*
+src/test/*
+src/playground/*
+src/wallpapercentral/view/*
+src/wallpapercentral/editor/UIImageStackPane.java

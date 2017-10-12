@@ -16,6 +16,7 @@ public class ImageZoom implements Toggleable{
     private ImageView imgView;
     private InvalidationListener invalidationListener;
     private EventHandler scrollHandler;
+//    public enum ZoomConstant {MAX_ZOOM, MIN_ZOOM;};
     private final double MAX_ZOOM = 1000.0;
     private final double MIN_ZOOM = 30.0;
 
@@ -65,9 +66,5 @@ public class ImageZoom implements Toggleable{
     public void off() {
         zoomProperty.removeListener(invalidationListener);
         scrollPane.removeEventFilter(ScrollEvent.ANY,scrollHandler);
-    }
-
-    public DoubleProperty zoomProperty() {
-        return zoomProperty;
     }
 }
