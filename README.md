@@ -1,6 +1,6 @@
 # Wallpaper Central
 
-This program allows you manage a workspace of photos for editing. Right now the only editing option available is to 
+This program allows you to manage a workspace of photos for editing. Right now the only editing option available is to 
 crop a photo.
 
 ## How to run
